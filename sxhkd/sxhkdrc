@@ -157,7 +157,7 @@ XF86AudioLowerVolume
 XF86AudioRaiseVolume
 	/home/earving/.scripts/volcontrolpulse.sh -u
 XF86TouchpadToggle
-	/home/earving/.scripts/.toggletouchpad.sh #Toggle Touchpad
+	/home/earving/.scripts/toggletouchpad.sh #Toggle Touchpad
 Print
 	scrot 'screenshot-%Y-%m-%d-%s_$wx$h.png'
 super + Print 

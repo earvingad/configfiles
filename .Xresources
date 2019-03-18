@@ -1,0 +1,104 @@
+!! black dark/light
+*.color0:     #000000
+*.color8:     #4D4D4D
+
+!! red dark/light
+*.color1:     #FF5555
+*.color9:     #FF6E67
+
+!! green dark/light
+*.color2:     #50FA7B
+*.color10:    #5AF78E
+
+!! yellow dark/light
+*.color3:     #F1FA8C
+*.color11:    #F4F99D
+
+!! blue dark/light
+*.color4:     #BD93F9
+*.color12:    #CAA9FA
+
+!! magenta dark/light
+*.color5:     #FF79C6
+*.color13:    #FF92D0
+
+!! cyan dark/light
+*.color6:     #8BE9FD
+*.color14:    #9AEDFE
+
+!! white dark/light
+*.color7:     #BFBFBF
+*.color15:    #E6E6E6
+
+*.foreground: #fafafa
+*.background: #1b1b1b
+!URxvt.foreground: #fafafa
+!URxvt.background: [100]#1b1b1b
+! URxvt*transparent:      true
+URxvt.depth: 24
+URxvt.intensityStyles: false
+
+! fonts
+! run "fc-list" for a list of available fonts
+URxvt*font: xft: SauceCodePro Nerd Font Mono:pixelsize=13
+! URxvt.letterSpace: 0 
+
+URxvt*termName: rxvt-unicode-256color
+URxvt.cursorBlink: 1
+!URxvt.cursorUnderline: 1
+!URxvt.cursorColor: #9e9f90
+
+URxvt*titleBar: false
+URxvt*scrollBar: False
+URxvt*scrollTtyOutput: False
+URxvt*scrollTtyKeypress: True
+URxvt*secondaryScroll: True
+URxvt*saveLines: 8000
+URxvt*letterSpace: -0.5
+
+
+URxvt.geometry: 95x25
+
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+URxvt.iso14755: False 
+URxvt.perl-ext-common: default,clipboard,tabbedex
+
+URxvt.tabbed.autohide: true
+URXvt.tabbed.reopen-on-close: yes
+URxvt.keysym.Control-t: perl:tabbedex:new_tab
+URxvt.keysym.Control-Tab: perl:tabbedex:next_tab
+URxvt.keysym.Control-Shift-Tab: perl:tabbedex:prev_tab
+
+! ---------------------------------------------------------------------------
+! ROFI Color theme
+! ---------------------------------------------------------------------------
+rofi.color-enabled: true
+rofi.color-window: #111111, #ffffff, #ffffff 
+rofi.color-normal: #393939, #ffffff, #393939, #268bd2, #268bd2
+rofi.color-active: #393939, #268bd2, #393939, #268bd2, #205171
+rofi.color-urgent: #393939, #f3843d, #393939, #268bd2, #ffc39c
+! ---------------------------------------------------------------------------
+! ROFI Config
+! ---------------------------------------------------------------------------
+rofi.modi: drun,run,window
+rofi.disable-history: false
+rofi.fake-transparency: false
+rofi.separator-style: solid
+!rofi.fake-background: screenshot
+rofi.font: Source code pro 20
+
+
+! Fonts config
+Xft.autohint: 0
+Xft.lcdfilter: lcdlight
+Xft.hintstyle: hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+Xft.dpi: 96
+
+! ---------------------------------------------------------------------------
+! Reload Config
+! ---------------------------------------------------------------------------
+! To reload Xresources
+! xrdb ~/.Xresources
