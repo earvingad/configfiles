@@ -1,0 +1,22 @@
+#!/bin/bash
+# 
+#This program gets whatsapp's unread conversations and displays them as a block.
+#Tested usinf web.whatsapp.com on firefox
+
+WHATS=$(xwininfo -tree -root | grep "WhatsApp - " | cut -d '"' -f 2 | cut -d ' ' -f1 | cut -d '(' -f 2 | cut -d ')' -f 1)
+
+if [ $WHATS ]; then
+	  if [ "$WHATS" == "WhatsApp" ]; then
+		  echo ""
+	  else
+	  echo "%{B#e53935} $WHATS %{B-}" 
+	  fi
+else
+	echo ""
+
+fi
+#for the use of i3blocks
+#case $BLOCK_BUTTON in
+	# Focus whatsapp window
+#	1) xdotool windowactivate $(xwininfo -tree -root | grep WhatsApp\ - | cut -d '"' -f 1) ;;
+#esac

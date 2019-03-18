@@ -1,0 +1,44 @@
+#!/bin/bash
+
+WHATS=$(xwininfo -tree -root | grep WhatsApp | cut -d '"' -f 2 | cut -d ' ' -f 1)
+
+if [[ "${WHATS}" != "" ]]; then
+	if [ "$WHATS" == "(1)" ]
+  then
+	  echo "<span background='#c62d2a'><b> 1  </b></span>"
+  elif [ "$WHATS" == "(2)" ]
+  then
+	  echo "<span background='#c62d2a'><b> 2  </b></span>"
+  elif [ "$WHATS" == "(3)" ]
+  then
+	  echo "<span background='#c62d2a'><b> 3  </b></span>"
+  elif [ "$WHATS" == "(4)" ]
+  then
+	  echo "<span background='#c62d2a'><b> 4  </b></span>"
+  elif [ "$WHATS" == "(5)" ]
+  then
+	  echo "<span background='#c62d2a'><b> 5  </b></span>"
+  elif [ "$WHATS" == "(6)" ]
+  then
+	 echo "<span background='#c62d2a'><b> 6  </b></span>"
+  elif [ "$WHATS" == "(7)" ]
+  then
+	 echo "<span background='#c62d2a'><b> 7  </b></span>"
+  elif [ "$WHATS" == "(8)" ]
+  then
+	 echo "<span background='#c62d2a'><b> 8  </b></span>"
+  elif [ "$WHATS" == "(9)" ]
+  then
+	 echo "<span background='#c62d2a'><b> 9  </b></span>"
+  elif [ "$WHATS" == "(10)" ]
+  then
+	 echo "<span background='#c62d2a'><b> 10 </b></span>"
+ else
+	 echo " "
+
+	fi
+fi
+
+case $BLOCK_BUTTON in
+	  1) xdotool set_desktop 1 ;;
+esac

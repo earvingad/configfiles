@@ -1,0 +1,5 @@
+#!bin/bash
+
+ip=$(ip address | grep wlp1s0 | grep inet | cut -d " " -f6 | cut -d "/" -f1)
+
+echo  $ip

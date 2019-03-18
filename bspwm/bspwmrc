@@ -1,0 +1,48 @@
+#! /bin/sh
+
+sxhkd &
+
+bspc config border_width         2
+bspc config window_gap          10
+#bspc config normal_border_color         "#000000"
+#bspc config focused_border_color 	"#fafafa"
+#bspc config urgent_border_color		"#e53935"
+# source the colors.
+. "${HOME}/.cache/wal/colors.sh"
+
+# Set the border colors for pywal
+bspc config normal_border_color "$color1"
+bspc config active_border_color "$color2"
+bspc config focused_border_color "$color15"
+# Use the line below if you are on bspwm >= 0.9.4
+bspc config presel_feedback_color "$color1"
+
+bspc config split_ratio          0.52
+bspc config single_monocle	 true
+bspc config gapless_monocle      true
+bspc config borderless_monocle   true
+bspc config top_padding		 20
+
+# Risize and move floating windows
+bspc config focus_follows_pointer true
+bspc config pointer_modifier mod4
+bspc config pointer_action1 move
+bspc config pointer_action2 resize_corner
+
+bspc config external_rules_command ~/.config/bspwm/external-rules.sh
+#bspc rule -a Gimp desktop='^8' state=floating follow=on
+#bspc rule -a firefox desktop='^1'
+
+#nitrogen --restore &
+/home/earving/.scripts/toggleHDMI.sh -h &
+#compton -bcCGf --blur-background --blur-kern="5x5box" --blur-background-exclude="class_g = 'URxvt'" &
+compton --config ~/.config/compton.conf &   
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+#dunst &
+/home/earving/.config/dunst/duntwal.sh &
+clipit &
+/home/earving/urserver/urserver --daemon &
+/home/earving/.config/polybar/launchpolybar.sh &
+xsetroot -cursor_name left_ptr &
+#bspc monitor -d 1 2 3 4 5 6 
+wal -R 

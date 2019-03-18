@@ -1,0 +1,12 @@
+#!/bin/bash
+
+stati=$(playerctl -p spotify status)
+if [ "$stati" == "No players found" ]; then
+	echo " "	
+elif [ "$stati" == "Playing" ]; then
+artist=$(playerctl -p spotify metadata artist)
+title=$(playerctl -p spotify metadata title)
+echo  $artist - $title
+elif [ "$stati" == "Paused" ]; then
+	echo " Paused"
+fi

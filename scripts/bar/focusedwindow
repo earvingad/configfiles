@@ -1,0 +1,6 @@
+#!/bin/bash
+
+#window=$(xprop -id $(xdotool getactivewindow) | grep _NET_WM_NAME | cut -d'"' -f2)
+window=$(xprop -id $(xdotool getactivewindow) | grep 'WM_NAME(STRING)' | cut -d'"' -f2)
+
+echo $window

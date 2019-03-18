@@ -1,0 +1,38 @@
+
+#!/bin/zsh
+
+# band function
+function down {
+    cat /proc/net/dev | grep "wlp1s0" | cut -d ':' -f 2 | cut -d ' ' -f 2
+}
+function up {
+    cat /proc/net/dev | grep "wlp1s0" | cut -d ':' -f 2 | cut -d ' ' -f 37
+}
+
+# Initial bandwidth download
+DOWN1=$(down)
+UP1=$(up)
+
+# Second(s) to wait to recheck file
+S=1
+
+# Sleep for those secs
+sleep $S
+
+# Re-run command
+DOWN2=$(down)
+UP2=$(up)
+
+# Determine difference
+let DIFF1=DOWN2-DOWN1
+let DIFF2=UP2-UP1
+
+# Determine rate of change in download bandwidth over time interval
+let RATE1=DIFF1/S
+let RATE2=DIFF2/S
+
+# Convert rate to kB/s
+let RATEkB1=RATE1/1024
+let RATEkB2=RATE2/1024
+# Print rate in kB/s
+echo  $RATEkB1 kB/s  $RATEkB2 kB/s

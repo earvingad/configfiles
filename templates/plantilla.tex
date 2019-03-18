@@ -1,0 +1,38 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage[urw-garamond]{mathdesign} %Tipo de letra Garamond
+\usepackage[T1]{fontenc} %tipo de letra garamond
+\usepackage[utf8]{inputenc}
+\usepackage[activeacute,spanish,es-tabla]{babel}
+\usepackage{authblk}
+\decimalpoint %hace de las comas decimales puntos decimales.
+\usepackage{mathtools} %herramienta simbolos matemáticos
+\usepackage{graphicx} %paquete para insertar imágenes
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.gif,} %formatos de imágenes soportados
+\usepackage{multicol} %paquete para columnas
+\usepackage{float} %paquete para columnas
+\usepackage{parskip} %quita la sangría del texto
+\usepackage{multirow} %paquete para combinar columnas
+\usepackage[font=small,labelfont=bf]{caption} %captions en pequeño y negrita.
+\usepackage[left=2.54cm,right=2.54cm,top=1.5cm,bottom=2cm,letterpaper]{geometry} %Paquete de margen 
+\usepackage[bookmarks]{hyperref} %crea indice y enlaces en el pdf
+\usepackage{titling} %reduce top distance of the title
+\setlength{\droptitle}{-1cm} %reduce top distance of the title
+
+\title{\textsc{AQUÍ VA EL TITULO}}
+\author{NOMBRE DEL AUTOR\thanks{CORREO ELECTRÓNICO}}
+\affil{AFILIACIÓN}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\section{Sección numerada}
+Aquí va el texto.
+\section*{sección sin número}
+\subsection{subsección}
+Más téxto
+\subsection*{subsección sin número}
+Texto
+\end{document}
+
+

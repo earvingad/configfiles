@@ -1,0 +1,5 @@
+#!bin/bash
+
+ip=$(pulsemixer --ge-volume | cut -d " " -f 1)
+
+echo  $ip
