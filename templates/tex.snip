@@ -5,17 +5,17 @@ alias   documentclass
 snippet mathexpression
 alias   $
 abbr	$ expression $
-	$${1:#:expression}$${2}
+	$${1:TARGET}$${2}
 
 snippet mathenva
 alias   $$
 abbr    $$ expression $$
-        $$${1:#:expression}$$${2}
+        $$${1:TARGET}$$${2}
 
 snippet mathenvb
 alias   \[
 abbr    \[ expression \]
-        \[${1:#:expression}\]${2}
+        \[${1:TARGET}\]${2}
 
 # ========== ENVIRONMENT ==========
 
@@ -110,7 +110,7 @@ alias   \begin{table} \table
 	\begin{table}[${1}]
 		\centering
 		\caption{${2}}
-		\label{${3}}
+		\label{table:${3}}
 		\begin{tabular}{${4}}
 			${5}
 		\end{tabular}
@@ -203,7 +203,7 @@ alias   \begin{eqnarray*} \eqnarray*
 snippet equation
 alias   \begin{equation} \equation
 	\begin{equation}
-		${1:TARGET}
+		${1:TARGET}\label{eq:${2}}
 	\end{equation}
 
 snippet equation*
@@ -230,7 +230,7 @@ alias   \begin{figure} \figure
 		\centering
 		\includegraphics[${2:width=${3\}}]{${4}}
 		\caption{${5}}
-		\label{${6}}
+		\label{fig:${6}}
 	\end{figure}
 
 snippet filecontents
@@ -271,9 +271,7 @@ alias   \begin{picture} \picture
 
 snippet math
 alias   \begin{math} \math
-	\begin{math}
-		${1:TARGET}
-	\end{math}
+	\(${1:TARGET}\)
 
 snippet quote
 alias   \begin{quote} \quote
@@ -575,15 +573,44 @@ alias   \label
 
 
 # ========== Custom snippet ==========
-snippet vline
-alias   \vline
-        \vline \hspace{${1}cm}
+snippet vrule
+alias   \vrule
+        \vrule width ${1:0.4}pt \hspace{${1:0.2}cm}
 
-snippet hline
+snippet hrule
 alias   \hline
-        \rule{\linewidth}{0.4pt}
+        \rule{${1}\textwidth}{${2:0.4}pt}
+
+snippet bloc
+alias   \bloc
+        \hspace*{0.1\textwidth} \textcolor{gray}{\vrule width 5pt}\hspace{0.2cm}\begin{minipage}{0.8\linewidth}
+	\textsf{${1:TARGET}}
+        \end{minipage}
+
+snippet colorbloc
+alias   \colorbloc
+        \hspace*{0.1\textwidth} \textcolor{gray}{\vrule width 5pt}\hspace{0.2cm}\colorbox{lightgray}{\begin{minipage}{0.8\linewidth}
+	\textsf{${1:TARGET}}
+        \end{minipage}}
 
 # ========== Pandoc snippet ==========
 snippet imagep
 alias   imagep
         ![${1}](${2}){#${3} width=${4}%}
+
+snippet subequations
+alias   \begin{subequations} \subequations
+	\begin{subequations}
+        \begin{equation}
+		${1:TARGET}
+	\end{equation}\label{eq:${2}}
+        \end{equations}
+
+snippet bold
+alias   bold
+        **${1:TARGET}**
+
+snippet italic
+alias   italic
+        *${1:TARGET}*
+
