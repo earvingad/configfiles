@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: fittable
+# key: fittable
+# --
+\begin{table}[${1:htpb}]
+    \centering
+    \caption{${2:caption}}
+    \label{tab_${3:label}}
+\resizebox{$4\textwidth}{!}{%
+$0
+}
+\end{table}

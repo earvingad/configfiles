@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: verticalrule
+# key: vrule
+# condition: 'auto
+# --
+\vrule width ${1:0.4}pt \hspace{${2:0.2}cm}

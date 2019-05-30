@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: underline
+# key: ~~
+# condition: 'auto
+# --
+\underline{$0}

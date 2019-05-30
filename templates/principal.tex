@@ -1,0 +1,234 @@
+\documentclass[12pt,letterpaper,twoside ,openany]{book}
+%\documentclass[10pt,letterpaper]{article}
+\usepackage[urw-garamond]{mathdesign} %Tipo de letra Garamond
+\usepackage[T1]{fontenc} %tipo de letra garamond
+\usepackage[utf8]{inputenc}
+\usepackage[activeacute,spanish,es-tabla]{babel}
+%\usepackage{doi} %para que se pongan los enlaces de las referencias
+%Configuración de referencias
+%\DefineBibliographyStrings{spanish}{andothers={\&~al\adddot}}
+%\renewbibmacro{y col.}{et al.}
+
+\usepackage{csquotes}
+\usepackage[backend=biber, autocite=superscript, citereset=chapter, refsection=chapter, style=numeric-comp, uniquename=false, sorting=none, natbib=true, url=false, isbn=false, doi=false, eprint=false]{biblatex}
+\let\cite\autocite %to put cite as a superscript use autocite=superscript, plain will be [1-3]
+\DeclareFieldFormat{labelnumberwidth}{\mkbibbold{#1}} %To match J. Mater. Chem. A bibligraphy report
+\DeclareFieldFormat[article]{title}{} %to remove the journal title in bibliography
+\DeclareFieldFormat[article]{journaltitle}{\mkbibemph{#1},}
+\DeclareFieldFormat[article]{volume}{\textbf{#1}}
+\DeclareFieldFormat{pages}{#1}
+\DefineBibliographyStrings{spanish}{andothers={\textit{et~al}\adddot}} % Change "y col" for "et al."
+\renewbibmacro{in:}{} % Remove "in:"
+
+% Swap volume for year
+\renewbibmacro*{volume+number+eid}{%
+  \printfield{year}%
+  \setunit{\addcomma\space}%
+  \printfield{volume}%
+  \setunit{\addcomma\space}%
+}
+% Remove year from bibliography
+\renewbibmacro*{issue+date}{%
+%\printfield{year}%
+	\setunit{\addcomma\space}%
+}
+% Remove Month and number from bibliography
+\AtEveryBibitem{%
+      \clearfield{month}%
+      \clearfield{number}%
+}
+
+%\addbibresource{library.bib}
+\bibliography{/home/earving/Documentos/LaTex/library.bib}
+%-----------------------------------
+\decimalpoint %hace de las comas decimales puntos decimales.
+%\usepackage{mathtools} %herramienta simbolos matemáticos
+\usepackage[fleqn]{amsmath} %paquete paara ecuaciones matemáticas. fleqn, para alinear a la izquierda justificado.
+\setlength{\mathindent}{0pt} %quita la sangría a las ecuaciones
+\usepackage[pdftex]{graphicx} %paquete para insertar imágenes
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.gif,} %formatos de imágenes soportados
+\usepackage{multicol} %paquete para columnas
+\usepackage{float} %paquete para columnas
+\usepackage{authblk}
+\usepackage{setspace} 
+\renewcommand\Authands{ y }
+\usepackage{titling} %paquete para reducir el espaciado del título
+\setlength{\droptitle}{-3cm} %centimetros que se reducirá el espaciado del título
+\usepackage{parskip}
+\usepackage{multirow} %paquete para combinar columnas
+\usepackage[font=small,labelfont=bf]{caption} %captions en pequeño y negrita.
+\usepackage[left=2.54cm,right=2.54cm,top=1.5cm,bottom=1.27cm,letterpaper]{geometry} %Paquete de margen "includeheadfoot"
+\usepackage{microtype}
+\usepackage{fancyhdr}
+\fancyhead[LE,RO]{\footnotesize \rightmark}
+\fancyhead[LO,RE]{\footnotesize }
+\fancyfoot[C]{}
+\fancyfoot[RO, LE] {\thepage}
+\pagestyle{fancy}
+\renewcommand{\sectionmark}[1]{\uppercase{\markright{\thesection\ #1}}}
+%\renewcommand{\chaptermark}[1]{ \markboth{}{} }
+\fancypagestyle{bl}{
+	\fancyhead{}
+	\fancyhead[LE,RO]{\footnotesize CONGRESOS}
+	\fancyhead[LO,RE]{\footnotesize CONGRESOS}
+}
+\fancypagestyle{art}{
+	\fancyhead{}
+	\fancyhead[LE,RO]{\footnotesize ARTÍCULOS}
+	\fancyhead[LO,RE]{\footnotesize ARTÍCULOS}
+}
+
+\usepackage{lipsum}
+%\usepackage{epigraph}
+%\setlength{\beforeepigraphskip}{-1.3cm}
+%\renewcommand{\epigraphsize}{\small}
+%\renewcommand{\beforeepigraphskip}{1cm}
+%\setlength{\epigraphwidth}{0.5\textwidth}
+%\renewcommand{\epigraphrule}{0pt}
+\usepackage{lettrine}
+\addto\captionsspanish{\renewcommand\contentsname{Índice}}
+\usepackage{hyperref} %make table of contents clickable
+\usepackage{setspace} %Interlineado 
+\onehalfspacing %interlineado 1.5
+\usepackage{xcolor, soul} %color and highlight text
+\sethlcolor{yellow} %color of highlighted text
+\usepackage{pdfpages}
+%----List of fogures and table by chapter
+\usepackage{etoolbox}
+\makeatletter
+\newcommand{\thechaptername}{}
+\newcounter{chapter@last@figure}
+\newcounter{chapter@last@table}
+
+\renewcommand{\chaptermark}[1]
+            {
+             \markboth{#1}{}
+              \renewcommand{\thechaptername}{#1}
+            }
+\pretocmd{\caption}{
+  \ifnum\pdfstrcmp{\@captype}{figure}=0
+    \ifnum\value{chapter}=\value{chapter@last@figure}\else
+      \addtocontents{lof}
+        {\protect\numberline{\bfseries\thechapter\quad\thechaptername}}%
+    \fi
+  \fi
+  \ifnum\pdfstrcmp{\@captype}{table}=0
+    \ifnum\value{chapter}=\value{chapter@last@table}\else
+      \addtocontents{lot}
+        {\protect\numberline{\bfseries\thechapter\quad\thechaptername}}%
+    \fi
+  \fi  
+  \expandafter\setcounter\expandafter{chapter@last@\@captype}{\value{chapter}}%
+}{}{}
+\makeatother
+%------
+%\newenvironment{abstract}%Pone resumen
+%{\cleardoublepage\null\vfill \begin{center}
+%\bfseries \abstractname \end{center}}%
+%{\vfill\null}
+
+
+\title{\textsc{Electrodeposición y caracterización de electrocatalizadores nanoestructurados para su aplicación en la reacción de evolución de oxigeno}}
+\author{Earving Arciga Duran\thanks{earciga@cideteq.mx}}
+\affil{CIDETEQ}
+
+\begin{document}
+\frontmatter
+%\maketitle
+
+\includepdf[pages={1}]{Imagenes/portada-tesis.pdf}
+\pagestyle{plain}
+\shipout\null
+\includepdf[pages={1}]{Imagenes/Jurado.pdf}
+\pagestyle{plain}
+\shipout\null
+\begin{flushright}
+\null\vspace{\stretch{1}}
+\textit{You know how people say\\``you can't live without love''?\\ Well, oxygen is even more important.}\\
+$\sim$Dr. House.
+\vspace{\stretch{2}}\null
+\end{flushright}
+\newpage
+\pagestyle{plain}
+\shipout\null
+\include{resumen-espa}
+\newpage
+\include{resumen-ingles}
+\pagestyle{plain}
+\include{agradecimientos}
+\shipout\null
+\pagestyle{fancy}
+%\let\cleardoublepage\clearpage
+\tableofcontents
+\listoffigures
+\listoftables
+\newpage
+\pagestyle{plain}
+\include{organizacion-tesis}
+\mainmatter
+\pagestyle{fancy}
+\addcontentsline{toc}{part}{Generalidades}
+\part*{Generalidades\\ \vspace*{-0.9cm}\noindent\rule{8cm}{0.4pt}\\ \vspace*{0.3cm} \raggedright \indent \normalsize \mdseries ¿Cuánto es $\frac{\text{la suma de los primeros} ~n~ \text{números primos}}{\text{la suma de los siguientes} ~n~ \text{números primos}}$?\hspace*{1cm} Considere que $\sum n_{\text{números primos}} = n^{2}$}
+\begingroup
+  \pagestyle{empty}
+  \cleardoublepage
+\endgroup
+\include{introduccion}
+\newpage
+\include{Hipotesis-Objetivos}
+\addcontentsline{toc}{section}{Referencias}
+\printbibliography[title = {Referencias}]
+\newpage
+\include{metodosycondiciones}
+\addcontentsline{toc}{section}{Referencias}
+\printbibliography[title = {Referencias}]
+\newpage
+\shipout\null
+\addcontentsline{toc}{part}{Electrocatalizador de Co$_{3}$O$_{4}$}
+\part*{Electrocatalizador de Co$_{3}$O$_{4}$\\ \vspace*{-0.8cm}\noindent\rule{12cm}{0.4pt}\\ \vspace*{0.3cm} \raggedright \indent \normalsize \mdseries De la misma forma que puede demostrarse que $x=\frac{-b\pm\sqrt{b^{2}-4ac}}{2a}$ es una solución válida para la ecuación $ax^{2}\pm bx+c$, también es posible deducir que $\varphi=\frac{1\pm\sqrt{5}}{2}$ es una solución para la relación $\frac{a+b}{a}=\frac{a}{b}$.}
+\shipout\null
+\include{Co3O4}
+\addcontentsline{toc}{section}{Referencias}
+\printbibliography[title = {Referencias}]
+\newpage
+\addcontentsline{toc}{part}{Electrocatalizador de NiO}
+\part*{Electrocatalizador de NiO\\ \vspace*{-0.8cm}\noindent\rule{12cm}{0.4pt}\\ \vspace*{0.3cm} \raggedright \indent \normalsize \mdseries Sea $x$ la respuesta a este problema, donde $x$ es un número entero real y $y$ la suma de sus dos dígitos. Calcule $2x-2y$, asumiendo que $x$ es la suma de su segundo dígito más diez veces su primer dígito.}
+\begingroup
+  \pagestyle{empty}
+  \cleardoublepage
+\endgroup
+\include{NiO}
+\addcontentsline{toc}{section}{Referencias}
+\printbibliography[title = {Referencias}]
+\newpage
+\shipout\null
+\addcontentsline{toc}{part}{Electrocatalizador de NiCo$_{2}$O$_{4}$}
+\part*{Electrocatalizador de NiCo$_{2}$O$_{4}$\\ \vspace*{-0.8cm}\noindent\rule{12cm}{0.4pt}\\ \vspace*{0.3cm} \raggedright \indent \normalsize \mdseries Encuentre tres números enteros positivos tales que la suma de cualquiera de dos de ellos es un número al cuadrado (diferente en cada suma).}
+\shipout\null
+\include{NiCo2O4}
+\addcontentsline{toc}{section}{Referencias}
+\printbibliography[title = {Referencias}]
+\newpage
+\pagestyle{plain}
+\include{Conclusiones-generales}
+\clearpage
+\include{perspectivas}
+\newpage
+\shipout\null
+\part*{Participación en congresos\\ \vspace*{-0.8cm}\noindent\rule{12cm}{0.4pt}\\ \vspace*{0.3cm} \raggedright \indent \normalsize \mdseries \centering ¿Cuál es el principal valor de $i^{i}$ ? Preste atención a la fórmula de Euler $e^{ix}=\cos x + i\sin x. $}
+\shipout\null
+\pagestyle{bl}
+\hspace*{0\textwidth}
+\includegraphics[width=1\textwidth,height=1.5\textheight,keepaspectratio]{Imagenes/certificado-ISE.pdf}
+
+\includegraphics[width=1\textwidth,height=1.5\textheight,keepaspectratio]{Imagenes/certificado-SMEQ.pdf}
+
+\part*{Artículos publicados\\ \vspace*{-0.8cm}\noindent\rule{12cm}{0.4pt}\\ \vspace*{0.3cm} \raggedright \indent}
+\shipout\null
+\pagestyle{art}
+\hspace*{0\textwidth}
+\includegraphics[width=1\textwidth,height=1.5\textheight,keepaspectratio]{Imagenes/art2.pdf}
+
+\includegraphics[width=1\textwidth,height=1.5\textheight,keepaspectratio]{Imagenes/art1.pdf}
+
+\end{document}

@@ -1,0 +1,23 @@
+# -*- mode: snippet -*-
+# name: header
+# key: header
+# --
+\documentclass[12pt,letterpaper]{article}
+\usepackage{/home/earving/Plantillas/HeaderMD}
+%\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+%\usepackage{hyperref} %crea indice y enlaces en el pdf
+
+\title{\textsc{}}
+\author{\thanks{}}
+\affil{}
+\date{}
+
+\begin{document}
+%\maketitle
+%\tableofcontents
+
+$0
+
+
+
+\end{document}

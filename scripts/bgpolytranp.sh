@@ -6,7 +6,7 @@ color=$(($n + 1))
 bg=$(sed -n "$color,"$color"p" .cache/wal/colors | cut -d "#" -f2)
 
 #Writing the color in polybar config file
-#make sure "back = $80xxxxxx" is always in line 8
+#make sure "back = $80xxxxxx" is always in line 32
 sed -i "32s/.*/back = #80$bg/" ~/.config/polybar/config
 
 #Restart polybar

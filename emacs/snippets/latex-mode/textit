@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: textit
+# key: ++
+# condition: 'auto
+# --
+\textit{$0}

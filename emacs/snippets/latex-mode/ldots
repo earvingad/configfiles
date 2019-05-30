@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: ldots
+# key: %%
+# condition: 'auto
+# --
+\ldots

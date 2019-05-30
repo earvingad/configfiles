@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: power
+# key: sp
+# condition: 'auto
+# --
+^{$0}

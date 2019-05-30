@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: colorblock
+# key: colorblock
+# --
+\hspace*{0.1\textwidth}{\textcolor{gray}{\vrule width 5pt}\hspace{0.2cm}\colorbox{lightgray}{\begin{minipage}{0.8\linewidth}
+\textsf{$0}
+\end{minipage}}}

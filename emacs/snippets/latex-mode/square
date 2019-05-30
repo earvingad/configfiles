@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: square
+# key: sr
+# condition: 'auto
+# --
+^{2} $0

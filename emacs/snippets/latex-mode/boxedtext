@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: boxedtext
+# key: box
+# --
+\boxed{\text{$0}}

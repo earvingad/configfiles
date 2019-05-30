@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: frac-
+# key: //
+# condition: 'auto
+# --
+\frac{$1}{$2} $0

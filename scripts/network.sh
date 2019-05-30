@@ -45,7 +45,7 @@ then
 urxvt -e sudo wifi-menu
 elif [ "$selection" == " Exit" ]
 then
-	exit
+  exit
 else 
 netctl start $selection
 fi

@@ -3,17 +3,17 @@
 case $1 in 
 
 "-u")
-	MODE="up"
-	;;
+  MODE="up"
+  ;;
 "-d")
-	MODE="down"
-	;;
+  MODE="down"
+  ;;
 "-m")
-	MODE="mute"
-	;;
+  MODE="mute"
+  ;;
 "-c")
-	MODE="click"
-	;;
+  MODE="click"
+  ;;
 esac
 
 msgId="1221"

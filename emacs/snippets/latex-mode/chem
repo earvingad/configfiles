@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: chemformula
+# key: chem
+# --
+\ch{$0}

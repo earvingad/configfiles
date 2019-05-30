@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: unnumered eq
+# key: dm
+# condition: 'auto
+# --
+\[
+$0
+\]

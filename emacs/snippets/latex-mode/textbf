@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: textbf
+# key: **
+# condition: 'auto
+# --
+\textbf{$0}

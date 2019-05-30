@@ -3,11 +3,11 @@
 case $1 in 
 
 "-u")
-	MODE="up"
-	;;
+  MODE="up"
+  ;;
 "-d")
-	MODE="down"
-	;;
+  MODE="down"
+  ;;
 
 esac
 
@@ -65,16 +65,16 @@ status=$(cat /sys/class/power_supply/BAT0/uevent | grep POWER_SUPPLY_STATUS= | c
 
 if [ "$status" == "Charging" ]
 then
-	while [ "$capacity" != "100" ]
-	do
-	capacity=$(cat /sys/class/power_supply/BAT0/uevent | grep POWER_SUPPLY_CAPACITY= | cut -d "=" -f2)
-		if [ "$capacity" == "100" ]
-		then
-		notify-send -t 1 "Batería Cargada" -u critical -i "/home/earving/.conky/bat90.png"
-		break
-		fi
-	sleep 5m
-	done
+  while [ "$capacity" != "100" ]
+  do
+  capacity=$(cat /sys/class/power_supply/BAT0/uevent | grep POWER_SUPPLY_CAPACITY= | cut -d "=" -f2)
+    if [ "$capacity" == "100" ]
+    then
+    notify-send -t 1 "Batería Cargada" -u critical -i "/home/earving/.conky/bat90.png"
+    break
+    fi
+  sleep 5m
+  done
 fi
 ;;
 

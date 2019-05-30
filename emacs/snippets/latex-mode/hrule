@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: horizontalrule
+# key: hrule
+# condition: 'auto
+# --
+\rule{${1}\textwidth}{${2:0.4}pt}

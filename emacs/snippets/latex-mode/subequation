@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: subequation
+# key: subequation
+# --
+\begin{subequations}
+\begin{equation}
+	    ${1}
+\end{equation}\label{eq_${2}}${3:\nonumber}
+\end{subequations}

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: block
+# key: block
+# --
+\hspace*{0.1\textwidth}{\textcolor{gray}{\vrule width 5pt}\hspace{0.2cm}\begin{minipage}{0.8\linewidth}
+\textsf{$0}
+\end{minipage}}

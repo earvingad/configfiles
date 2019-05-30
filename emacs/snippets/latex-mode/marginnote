@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: marginnote
+# key: mnoo
+# --
+\marginnote{\vrule\hspace{0.05cm}\begin{minipage}{2cm}{\footnotesize ${1:${VISUAL}} }\end{minipage}}[${2:0}cm] $0

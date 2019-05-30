@@ -19,4 +19,4 @@ sed -i "s/color2/${color[2]}/g" ~/.themes/Ninix-wal/gtk-2.0/gtkrc
 sed -i "s/color8/${color[8]}/g" ~/.themes/Ninix-wal/gtk-2.0/gtkrc
 sed -i "s/color15/${color[0]}/g" ~/.themes/Ninix-wal/gtk-2.0/gtkrc
 
-
+cp /home/earving/.cache/wal/gtk.css /home/earving/.themes/Ninix-wal/gtk-3.20/gtk.css

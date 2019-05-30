@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: inline eq
+# key: mk
+# condition: 'auto
+# --
+$$0$

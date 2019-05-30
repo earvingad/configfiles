@@ -3,35 +3,35 @@
 case $1 in 
 
 "-l")
-	MODE="localhost"
-	;;
+  MODE="localhost"
+  ;;
 "-p")
-	MODE="privateip"
-	;;
+  MODE="privateip"
+  ;;
 esac
 
 case $MODE in
 
 "localhost")
-	netctl start INFINITUMduse
-	cp /etc/privoxy/config_localhost /etc/privoxy/config
-	systemctl start privoxy.service
-	;;
+  netctl start INFINITUMduse
+  cp /etc/privoxy/config_localhost /etc/privoxy/config
+  systemctl start privoxy.service
+  ;;
 
 "privateip")
-	netctl start INFINITUMduse
-	cp /etc/privoxy/config_privip /etc/privoxy/config
-	systemctl start privoxy.service
-	;;
+  netctl start INFINITUMduse
+  cp /etc/privoxy/config_privip /etc/privoxy/config
+  systemctl start privoxy.service
+  ;;
 esac
 
 if [ "$MODE" == "localhost" ]
 then 
-	ip=127.0.0.1
-	port=8118
+  ip=127.0.0.1
+  port=8118
 else
-	ip=192.168.1.100
-	port=8118
+  ip=192.168.1.100
+  port=8118
 fi
 
 #  grep PATH /etc/environment > lol.t;

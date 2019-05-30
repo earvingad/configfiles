@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: sqrt
+# key: sq
+# condition: 'auto
+# --
+\sqrt{$1} $0
