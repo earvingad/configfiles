@@ -25,3 +25,8 @@
 
 ;(set-default 'preview-default-document-pt 10)
 (set-default 'preview-scale-function 1)
+
+;;Preview tikzpictures
+(eval-after-load "preview"
+  '(add-to-list 'preview-default-preamble "\\PreviewEnvironment{tikzpicture}" t)
+  )
