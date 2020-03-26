@@ -29,10 +29,10 @@
 
 ;for the use with pywal
 [colors]
-back = #800A0F11
+back = #800F1C30
 ;background = ${xrdb:color2:#222}
 background = ${self.back} 
-background-alt = ${xrdb:color2:#222}
+background-alt = ${xrdb:color5:#222}
 foreground = ${xrdb:color7:#222}
 foreground-alt = ${xrdb:color7:#222}
 primary = ${xrdb:color1:#222}
@@ -66,13 +66,13 @@ module-margin-right = 4
 font-0 = System Font:pixelsize=12;0
 ;font-1 = FontAwesome:fontformat=truetype:size=8:antialias=false;0
 font-1 = Font Awesome 5 Pro:pixelsize=12;0
-font-2 = Wuncon Siji:pixelsize=14;0
+font-2 = Siji:pixelsize=14;0
 font-3 = Source Code Pro:pixelsize=12;0
 font-4 = Font Awesome 5 Brands:pixelsize=12;0
 
 modules-left = bspwm i3 xwindow
 modules-center = 
-modules-right = mpsyt player speed wlan volume battery xkeyboard calendar whatsapp 
+modules-right = mpsyt player speeddown speedup wlan volume battery xkeyboard calendar whatsapp 
 
 tray-position = right
 tray-padding = 1
@@ -83,6 +83,7 @@ tray-padding = 1
 
 override-redirect = true
 wm-restack = bspwm
+;wm-restack = i3
 
 ;scroll-up = bspwm-desknext
 ;scroll-down = bspwm-deskprev
@@ -101,9 +102,8 @@ label =  %title:0:30:...%
 [module/xkeyboard]
 type = internal/xkeyboard
 blacklist-0 = num lock
-
 format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-foreground = ${xrdb:color5}
 ;format-prefix-underline = ${colors.primary}
 
 label-layout = %layout%
@@ -185,24 +185,24 @@ label-mode-foreground = #000
 label-mode-background = ${colors.primary}
 
 ; focused = Active workspace on focused monitor
-label-focused = %index%  %icon%
+label-focused = %icon% %index% 
 ;label-focused-foreground = ${colors.primary}
 label-focused-background = ${module/bspwm.label-focused-background}
 label-focused-underline = ${module/bspwm.label-focused-underline}
 label-focused-padding = ${module/bspwm.label-focused-padding}
 
 ; unfocused = Inactive workspace on any monitor
-label-unfocused = %index%  %icon%
+label-unfocused = %icon% %index% 
 label-unfocused-padding = ${module/bspwm.label-occupied-padding}
 
 ; visible = Active workspace on unfocused monitor
-label-visible = %index%  %icon%
+label-visible = %icon% %index%
 label-visible-background = ${self.label-focused-background}
 label-visible-underline = ${self.label-focused-underline}
 label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
-label-urgent = %index%  %icon%
+label-urgent = %icon% %index%
 label-urgent-background = ${module/bspwm.label-urgent-background}
 label-urgent-padding = ${module/bspwm.label-urgent-padding}
 
@@ -308,14 +308,26 @@ ramp-signal-1 = 
 ramp-signal-2 = 
 ramp-signal-3 = 
 ramp-signal-4 = 
-ramp-signal-foreground = ${colors.foreground-alt}
+;ramp-signal-foreground = ${colors.foreground-alt}
+ramp-signal-foreground = ${xrdb:color4}
 
-[module/speed]
+[module/speeddown]
 type = internal/network
 interface = wlp1s0
 tail = true
+format-connected-prefix-foreground = ${xrdb:color3}
+format-connected-prefix = " "
 format-connected = <label-connected>
-label-connected =  %downspeed%  %upspeed%
+label-connected = %downspeed%
+
+[module/speedup]
+type = internal/network
+interface = wlp1s0
+tail = true
+format-connected-prefix-foreground = ${xrdb:color5}
+format-connected-prefix = " "
+format-connected = <label-connected>
+label-connected = %upspeed%
 
 [module/speed1]
 type = custom/script 
@@ -367,6 +379,10 @@ label = %date% %time%
 [module/calendar]
 type = custom/script
 exec = /home/earving/.scripts/bar/calendar
+label = %output%
+format = <label>
+format-prefix = " "
+format-prefix-foreground = ${xrdb:color6}
 tail = true
 click-left = exec gsimplecal
 ;format-underline = ${colors.primary}
@@ -376,6 +392,9 @@ type = custom/script
 exec = sh /home/earving/.scripts/bar/volume
 tail = false
 label = %output%
+format = <label>
+format-prefix = " "
+format-prefix-foreground = ${xrdb:color6}
 interval = 1
 click-left = urxvt -e pulsemixer
 click-right = pulsemixer --toggle-mute

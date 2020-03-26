@@ -9,7 +9,7 @@ bindkey -e
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/earving/.zshrc'
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
 
 #completion
 autoload -Uz compinit
@@ -29,7 +29,7 @@ alias boot='systemd-analyze'
 alias red='netctl start'
 alias home='netctl start INFINITUMduse && privoxy --no-daemon /etc/privoxy/config'
 alias torset='sh /home/earving/.scripts/torset.sh -c'
-alias appoint='sudo create_ap wlp1s0 wlp1s0 EAD Arciga92'
+alias appoint='sudo create_ap wlp1s0 wlp1s0 EAD a1234567'
 alias confi3='nvim ~/.config/i3/config'
 alias bloconf='nvim ~/.config/i3/i3blocks.conf'
 alias zshrc='nvim .zshrc'
@@ -39,13 +39,15 @@ alias confbspwm='nvim ~/.config/bspwm/bspwmrc'
 alias confrules='nvim ~/.config/bspwm/external-rules.sh'
 alias confvim='nvim ~/.config/nvim/init.vim'
 alias nv='nvim'
+#alias emacs='emacs -nw'
 alias systat='systemctl status'
 alias systart='systemctl start'
 alias pantalla='sh ~/.scripts/toggleHDMI.sh -h'
 alias archstream='acestreamengine --client-console --port 8621'
 alias urserver=' ~/urserver/urserver'
 alias aceplayer='acestream-launcher' 
-alias neofetch='neofetch --ascii_distro arch_n' 
+#alias neofetch='neofetch --ascii_distro arch_n' 
+alias dic='dict -d fd-fra-eng' 
 
 #Pompt
 autoload -Uz colors && colors
