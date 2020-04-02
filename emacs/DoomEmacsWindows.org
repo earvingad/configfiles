@@ -6,7 +6,7 @@ Spacemacs in Windows. However, slower than in Linux (that is Windows fault).
 * What you need
 If you have limited permissions in Windows PC (e.g. admin privileges), you might
 not be able to use Chocolatey/Scoop.
-However, you can still use ~git-bash.exe~ portable version!.
+However, you can still use ~git-bash.exe~ portable version!
   - Download [[https://git-scm.com/download/win][git]].
   - Download [[https://github.com/BurntSushi/ripgrep/releases][Ripgrep]] and [[https://github.com/sharkdp/fd/releases][fd]]. Make sure you download the =windows-gnu= version.
   - Of course, download [[http://ftp.wayne.edu/gnu/emacs/windows/][emacs]].
@@ -15,41 +15,41 @@ place them where you want.
   - You should have one folder for ~Ripgrep~ and another for ~fd~.
 Extract emacs and place it where you want.
 It does not matter where they are, we will add them to the ~Path~ later (but keep them
-safe and where you remember).
+safe and where you can remember).
 
 * Instructions
 ** Edit system environment variables
 - Go to ~Control panel -> User Accounts -> Change my environment variables~.
-  + ~New~ type ~HOME~ and set your ~C:\Users\USERNAME~ and ~OK~.
+  + ~New~, type ~HOME~ and set your ~C:\Users\USERNAME~ and ~OK~.
   + Select ~Path~, ~edit~ and add your ~C:\path\to\the\emacs\bin~ folder and ~OK~.
   + Select ~Path~, ~edit~ and add your ~C:\path\to\the\ripgrep~ folder and ~OK~.
   + Select ~Path~, ~edit~ and add your ~C:\path\to\the\fd~ folder and ~OK~.
   + Click ~Ok~.
-- We still need to add ~C:\Users\USERNAME\.emacs.d\bin~. First download Doom
+- We still need to add ~C:\Users\USERNAME\.emacs.d\bin~; but first download Doom
   files.
 ** Install Doom
 - Open ~git-bash.exe~
-- Type ~cd ~~
-- Run: ~git clone https://github.com/hlissner/doom-emacs ~/.emacs.d~
-- After the download is completed, type ~cd ~/.emacs.d/bin~ and run: ~./doom install~
+- Type =cd ~=
+- Run: =git clone https://github.com/hlissner/doom-emacs ~/.emacs.d=
+- After the download is completed, type =cd ~/.emacs.d/bin= and run: =./doom install=
 - If everything is fine, Doom is now installed.
 - Just in case run ~./doom sync~
 - Go to ~Control panel -> User Accounts -> Change my environment variables~.
-  - Select ~Path~, edit and add ~C:\Users\USERNAME\.emacs.d\bin~, click ~OK -> OK~.
+  - Select ~Path~, =edit= and add ~C:\Users\USERNAME\.emacs.d\bin~, click ~OK -> OK~.
 - Now you can start emacs and will see the Doom dashboard!
 ** All the icons
-By default All-the-icons will not be enabled in Windows.
-- If all-the-icons is not intalled. Open emacs and ~M-x package-install RET all-the-icons RET~.
+By default all-the-icons will not be enabled in Windows.
+- If all-the-icons is not installed. Open emacs and ~M-x package-install RET all-the-icons RET~.
 - ~M-x all-the-icons-install-fonts~ select where to download the fonts and
-  installed them (double click -> install).
+  install them (double click -> install).
 - Restart emacs and there you go.
 ** From one PC to another
-If one of your PCs has no internet connection or is under a firewall, you can:
-- Copy your ~~/.doom.d ~/.emacs.d ripgrep fd emacs~ folders directly to the
-  other PC (~~/.domm.d ~/.emacs.d~ go in ~C:\Users\USERNAME~)
+If one of your PCs does not have internet connection or is under a firewall, you can:
+- Copy your =~/.doom.d ~/.emacs.d ripgrep fd emacs= folders directly to the
+  other PC (=~/.domm.d ~/.emacs.d= go in =C:\Users\USERNAME=)
 - Edit the system environment variables accordingly.
 - Copy and install the fonts you downloaded with ~all-the-icons~
-- Open ~git-bash.exe~, ~cd ~/.emacs.d/bin~ and run: ~./doom sync~
+- Open ~git-bash.exe~, =cd ~/.emacs.d/bin= and run: =./doom sync=
 - /et voilà!/.
 ** Emacs server
 If you use emacs server, Doom will place the server file in
