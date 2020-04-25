@@ -15,7 +15,7 @@
 @define-color color13 {color13};
 @define-color color14 {color14};
 @define-color color15 {color15};
-@define-color selected_bg_color {color5};
+@define-color selected_bg_color {color6};
 @define-color bg_color mix(@color15, @color0, 0.12);
 @define-color tooltip_bg_color mix(@color15, @color0, 0.04);
 @define-color base_color mix(@color15, @color0, 0);

@@ -1,0 +1,257 @@
+#+TITLE: Config
+* General
+** About me
+#+begin_src emacs-lisp :tangle yes
+(setq user-full-name "Earving Arciga"
+      user-mail-address "arciga.duran@gmail.com")
+#+end_src
+** Theme
+#+begin_src emacs-lisp :tangle yes
+(setq doom-theme 'doom-vibrant)
+(setq doom-font (font-spec :family "Source Code Pro" :size 14))
+#+end_src
+** Org +roam directory
+#+begin_src emacs-lisp :tangle yes
+(setq org-directory "~/Documentos/org/")
+(setq org-roam-directory"~/Documentos/roam")
+#+end_src
+** Visual line
+#+begin_src emacs-lisp :tangle yes
+(global-visual-line-mode 1)
+(setq display-line-numbers-type 'relative)
+#+end_src
+** Align keybindings
+#+begin_src emacs-lisp :tangle yes
+(load! "lisp/align.el")
+(map! :leader
+      :desc "Align the current region" "a r" #'align-regexp)
+#+end_src
+** Global Company
+#+begin_src emacs-lisp :tangle yes
+(add-hook! 'after-init-hook 'global-company-mode)
+#+end_src
+** Pywal colors
+#+begin_src emacs-lisp :tangle yes
+;; (load! "lisp/ewal-theme.el")
+#+end_src
+** Syntax Color in buffer
+#+begin_src emacs-lisp :tangle yes
+(defun xah-syntax-color-hex ()
+  "Syntax color text of the form 「#ff1100」 and 「#abc」 in current buffer.
+URL `http://ergoemacs.org/emacs/emacs_CSS_colors.html'
+Version 2017-03-12"
+  (interactive)
+  (font-lock-add-keywords
+   nil
+   '(("#[[:xdigit:]]\\{3\\}"
+      (0 (put-text-property
+          (match-beginning 0)
+          (match-end 0)
+          'face (list :background
+                      (let* (
+                             (ms (match-string-no-properties 0))
+                             (r (substring ms 1 2))
+                             (g (substring ms 2 3))
+                             (b (substring ms 3 4)))
+                        (concat "#" r r g g b b))))))
+     ("#[[:xdigit:]]\\{6\\}"
+      (0 (put-text-property
+          (match-beginning 0)
+          (match-end 0)
+          'face (list :background (match-string-no-properties 0)))))))
+  (font-lock-flush))
+(add-hook 'css-mode-hook 'xah-syntax-color-hex)
+(add-hook 'php-mode-hook 'xah-syntax-color-hex)
+(add-hook 'html-mode-hook 'xah-syntax-color-hex)
+#+end_src
+
+** org-superstar
+#+begin_src emacs-lisp :tangle yes
+(setq org-ellipsis " ▾")
+;;↴ ▼
+(setq org-superstar-headline-bullets-list '("●" "◉" "◎" "☉" "○" "◌"))
+;;"◉" "◎" "○" "∙" "►" "◇"))
+(add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
+(font-lock-add-keywords 'org-mode
+                        '(("^ +\\([+*]\\) "
+                           0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "‣")))
+                          ("^\\([-]\\) "
+                           0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•")))
+                          ("^ +\\([-]\\) "
+                           0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•")))
+                          ("\\(->\\)"
+                           0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "→")))))
+#+end_src
+
+** Enable visual mode line
+#+begin_src emacs-lisp :tangle yes
+(global-visual-line-mode 1)
+#+end_src
+
+** YASnippet
+*** Snippets directories
+# Doom already sets =~/.doom.d/snippets= for personal snippets
+#+begin_src emacs-lisp :tangle yes
+;; (setq yas-snippet-dirs
+;;       '("~/.doom.d/snippets"                 ;; personal snippets
+;;         ))
+(require 'yasnippet)
+(yas-global-mode 1)
+(setq yas-wrap-around-region 1)
+#+end_src
+*** Auto expand
+#+begin_src emacs-lisp :tangle yes
+(defun my-yas-try-expanding-auto-snippets ()
+  (when yas-minor-mode
+    (let ((yas-buffer-local-condition ''(require-snippet-condition . auto)))
+      (yas-expand))))
+(add-hook 'post-command-hook #'my-yas-try-expanding-auto-snippets)
+#+end_src
+
+** Darkroom
+#+begin_src emacs-lisp :tangle yes
+(load! "lisp/darkroom.el")
+(map! :leader
+      (:prefix-map ("t" . "toggle")
+        :desc "Zen mode" "z" #'darkroom-mode
+        :desc "menu bar" "m" #'menu-bar-mode))
+#+end_src
+
+* Custom key bindings
+** Avy goto
+#+begin_src emacs-lisp :tangle yes
+(map! :leader
+      :desc "Jump to char" "j j"             #'evil-avy-goto-char)
+(map! :leader
+      :desc "Jump to char-2" "j k"           #'evil-avy-goto-char-2)
+#+end_src
+** Remap "SPC SPC" to execute commands
+#+begin_src emacs-lisp :tangle yes
+(map! :leader
+      "SPC" nil
+      :desc "M-x" "SPC"                      #'execute-extended-command)
+#+end_src
+** Remap buffer
+#+begin_src emacs-lisp :tangle yes
+(map! :leader
+      (:prefix "b"
+        :desc "Switch to buffer" "b"           #'switch-to-buffer
+        :desc "Switch workspace buffer" "B"    #'persp-switch-to-buffer))
+#+end_src
+** Spell change
+#+begin_src emacs-lisp :tangle yes
+(defun spellcheck-change ()
+  ;"Run `some-command' and `some-other-command' in sequence."
+  (interactive)
+  (let* ((dic ispell-current-dictionary)
+    	 (change (if (string= dic "es") "en_US" "es")))
+        (ispell-change-dictionary change)
+        (flyspell-buffer)
+        (message "Dictionary switched from %s to %s" dic change)
+        ))
+(map! :leader
+      :desc "Change spell language" "s c" #'spellcheck-change)
+(require 'flyspell-correct-ivy)
+(define-key flyspell-mode-map (kbd "C-:") 'flyspell-correct-wrapper)
+#+end_src
+* Mu4e
+#+begin_src emacs-lisp :tangle yes
+(use-package mu4e
+  :config
+  (remove-hook 'mu4e-main-mode-hook 'evil-collection-mu4e-update-main-view))
+(require 'mu4e)
+;; use mu4e for e-mail in emacs
+(setq mail-user-agent 'mu4e-user-agent)
+;; default
+;;(setq mu4e-maildir "~/Maildir")
+
+(setq mu4e-drafts-folder "/[Gmail].Drafts")
+(setq mu4e-sent-folder   "/[Gmail].Sent")
+(setq mu4e-trash-folder  "/[Gmail].Trash")
+
+;; don't save message to Sent Messages, Gmail/IMAP takes care of this
+(setq mu4e-sent-messages-behavior 'delete)
+
+;; (See the documentation for `mu4e-sent-messages-behavior' if you have
+;; additional non-Gmail addresses and want assign them different
+;; behavior.)
+
+;; setup some handy shortcuts
+;; you can quickly switch to your Inbox -- press ``ji''
+;; then, when you want archive some messages, move them to
+;; the 'All Mail' folder by pressing ``ma''.
+
+(setq mu4e-maildir-shortcuts
+    '( ("/INBOX"               . ?i)
+       ("/[Gmail].Sent Mail"   . ?s)
+       ("/[Gmail].Trash"       . ?t)
+       ("/[Gmail].All Mail"    . ?a)))
+
+;; allow for updating mail using 'U' in the main view:
+(setq mu4e-get-mail-command "mbsync -a")
+
+;; something about ourselves
+(setq
+   user-mail-address "arciga.duran@gmail.com"
+   user-full-name  "Earving Arciga"
+   mu4e-compose-signature
+    (concat
+      "Earving Arciga\n"
+      ""))
+
+;; sending mail -- replace USERNAME with your gmail username
+;; also, make sure the gnutls command line utils are installed
+;; package 'gnutls-bin' in Debian/Ubuntu
+
+(require 'smtpmail)
+(setq message-send-mail-function 'smtpmail-send-it
+   starttls-use-gnutls t
+   smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
+   smtpmail-auth-credentials
+     '(("smtp.gmail.com" 587 "arciga.duran@gmail.com" nil))
+   smtpmail-default-smtp-server "smtp.gmail.com"
+   smtpmail-smtp-server "smtp.gmail.com"
+   smtpmail-smtp-service 587)
+
+;; don't keep message buffers around
+(setq message-kill-buffer-on-exit t)
+#+end_src
+
+* CustomLatex command for Latex compilation
+#+begin_src emacs-lisp :tangle yes
+(defun CustomLatex ()
+  "run a command on the current file and revert the buffer"
+  (interactive)
+  (shell-command
+   (format "st -e ~/.scripts/pdflatexcompile.sh %s & disown"
+       (shell-quote-argument (buffer-file-name))))
+  (revert-buffer t t))
+(global-set-key (kbd "M-m") 'CustomLatex)
+#+end_src
+* Mardown custom commands
+#+begin_src emacs-lisp :tangle yes
+(setq markdown-command "pandoc -f markdown -t html --mathjax --highlight-style=pygments")
+
+(map! :map evil-markdown-mode-map
+        :i "M-<left>"  #'markdown-promote
+        :i "M-<right>" #'markdown-demote)
+(map! :map markdown-mode-map
+        :localleader
+        (:prefix ("i" . "insert")
+          "h"          #'markdown-insert-header-atx-1))
+#+end_src
+* Custom faces
+** Org title
+#+begin_src emacs-lisp :tangle yes
+(custom-set-faces
+ '(org-document-title ((t (:foreground "#C57BDB" :weight bold :height 2.1 :family "Nimbus Roman"))))
+ )
+#+end_src
+** Org level
+#+begin_src emacs-lisp :tangle yes
+(custom-set-faces
+  '(org-level-1 ((t (:inherit outline-1 :height 1.5))))
+  '(org-level-2 ((t (:inherit outline-2 :height 1.25))))
+  '(org-level-3 ((t (:inherit outline-3 :height 1.12))))
+)
+#+end_src

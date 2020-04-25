@@ -1,0 +1,45 @@
+* {{
+    /* Special values */
+    background70: rgba({background.rgb}, 0.6);
+    background-selected: rgba({foreground.rgb}, 0.075);
+    border-color: rgba({color8.rgb},0.3);
+    text-color: {foreground};
+    background: {background};
+    foreground: {foreground};
+
+    /* All term colors */
+    color0: {color0};
+    color1: {color1};
+    color2: {color2};
+    color3: {color3};
+    color4: {color4};
+    color5: {color5};
+    color6: {color6};
+    color7: {color7};
+    color8: {color8};
+    color9: {color9};
+    color10: {color10};
+    color11: {color11};
+    color12: {color12};
+    color13: {color13};
+    color14: {color14};
+    color15: {color15};
+
+    /* Term colors with transparency */
+    alpha-color0: rgba({color0.rgb},0.5);
+    alpha-color1: rgba({color1.rgb},0.5);
+    alpha-color2: rgba({color2.rgb},0.5);
+    alpha-color3: rgba({color3.rgb},0.5);
+    alpha-color4: rgba({color4.rgb},0.5);
+    alpha-color5: rgba({color5.rgb},0.5);
+    alpha-color6: rgba({color6.rgb},0.5);
+    alpha-color7: rgba({color7.rgb},0.5);
+    alpha-color8: rgba({color8.rgb},0.5);
+    alpha-color9: rgba({color9.rgb},0.5);
+    alpha-color10: rgba({color10.rgb},0.5);
+    alpha-color11: rgba({color11.rgb},0.5);
+    alpha-color12: rgba({color12.rgb},0.5);
+    alpha-color13: rgba({color13.rgb},0.5);
+    alpha-color14: rgba({color14.rgb},0.5);
+    alpha-color15: rgba({color15.rgb},0.5);
+}}

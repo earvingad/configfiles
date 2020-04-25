@@ -1,0 +1,22 @@
+* Configfiles
+These are my config files for i3, Bspwm and recently qtile. Other configurations include nVim, Vanilla Emacs and Doom Emacs.
+** System files
+- .Xresources
+- .zshrc
+** Editor
+- Vim
+  + init.vim
+- Vanilla emacs
+  + init.el
+  + Auctex
+  + Flyspell
+- Doom emacs
+  + config.org
+  + lisp folder
+    * align.el
+** Window manager
+- Bspwm
+  - bspwmrc
+  - sxhkdrc
+- qtile
+  - config.py
