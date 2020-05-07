@@ -1,46 +1,28 @@
-#+TITLE: Config
-* General
-** About me
-#+begin_src emacs-lisp :tangle yes
 (server-start)
 (setq user-full-name "Earving Arciga"
       user-mail-address "arciga.duran@gmail.com")
-#+end_src
-** Theme
-#+begin_src emacs-lisp :tangle yes
+
 (setq doom-theme 'doom-vibrant)
 (setq doom-font (font-spec :family "Iosevka Term SS05" :size 16))
 ;; (setq evil-move-cursor-back nil)
 (setq fancy-splash-image "~/Imágenes/Inkscape Works/cacochan.svg")
-#+end_src
-** Org +roam directory
-#+begin_src emacs-lisp :tangle yes
+
 (setq org-directory "~/Documentos/org/")
 (setq default-directory "~/")
 (setq org-roam-directory"~/Documentos/roam")
 (setq org-roam-graph-viewer "qutebrowser")
-#+end_src
-** Visual line
-#+begin_src emacs-lisp :tangle yes
+
 (global-visual-line-mode 1)
 (setq display-line-numbers-type 'relative)
-#+end_src
-** Align keybindings
-#+begin_src emacs-lisp :tangle yes
+
 (load! "lisp/align.el")
 (map! :leader
       :desc "Align the current region" "a r" #'align-regexp)
-#+end_src
-** Global Company
-#+begin_src emacs-lisp :tangle yes
+
 (add-hook! 'after-init-hook 'global-company-mode)
-#+end_src
-** Pywal colors
-#+begin_src emacs-lisp :tangle yes
+
 ;; (load! "lisp/ewal-theme.el")
-#+end_src
-** Syntax Color in buffer
-#+begin_src emacs-lisp :tangle yes
+
 (defun xah-syntax-color-hex ()
   "Syntax color text of the form 「#ff1100」 and 「#abc」 in current buffer.
 URL `http://ergoemacs.org/emacs/emacs_CSS_colors.html'
@@ -68,10 +50,7 @@ Version 2017-03-12"
 (add-hook 'css-mode-hook 'xah-syntax-color-hex)
 (add-hook 'php-mode-hook 'xah-syntax-color-hex)
 (add-hook 'html-mode-hook 'xah-syntax-color-hex)
-#+end_src
 
-** org-superstar
-#+begin_src emacs-lisp :tangle yes
 (setq! org-ellipsis " ▾")
 ;;↴ ▼
 (setq! org-superstar-headline-bullets-list '("●" "◉" "◎" "☉" "○" "◌"))
@@ -86,72 +65,47 @@ Version 2017-03-12"
                           ;; ("\\(!=\\)"
                           ;;  0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "≠")))
                           ))
-#+end_src
 
-** Enable visual mode line
-#+begin_src emacs-lisp :tangle yes
 (global-visual-line-mode 1)
-#+end_src
 
-** YASnippet
-*** Snippets directories
-Doom already sets =~/.doom.d/snippets= for personal snippets
-#+begin_src emacs-lisp :tangle yes
 ;; (setq yas-snippet-dirs
 ;;       '("~/.doom.d/snippets"                 ;; personal snippets
 ;;         ))
 (require 'yasnippet)
 (yas-global-mode 1)
 (setq yas-wrap-around-region 1)
-#+end_src
-*** Auto expand
-#+begin_src emacs-lisp :tangle yes
+
 (defun my-yas-try-expanding-auto-snippets ()
   (when yas-minor-mode
     (let ((yas-buffer-local-condition ''(require-snippet-condition . auto)))
       (yas-expand))))
 (add-hook 'post-command-hook #'my-yas-try-expanding-auto-snippets)
-#+end_src
 
-** Darkroom
-#+begin_src emacs-lisp :tangle yes
 (load! "lisp/darkroom.el")
 (map! :leader
       (:prefix-map ("t" . "toggle")
         :desc "Zen mode" "z" #'darkroom-mode
         :desc "menu bar" "m" #'menu-bar-mode))
-#+end_src
 
-* Custom key bindings
-** Avy goto
-#+begin_src emacs-lisp :tangle yes
 (map! :leader
       :desc "Jump to char" "j j"             #'evil-avy-goto-char)
 (map! :leader
       :desc "Jump to char-2" "j k"           #'evil-avy-goto-char-2)
-#+end_src
-** Remap "SPC SPC" to execute commands
-#+begin_src emacs-lisp :tangle yes
+
 (map! :leader
       "SPC" nil
       :desc "M-x" "SPC"                      #'execute-extended-command)
-#+end_src
-** Remap buffer
-#+begin_src emacs-lisp :tangle yes
+
 (map! :leader
       (:prefix "b"
         :desc "Switch to buffer" "b"           #'switch-to-buffer
         :desc "Switch workspace buffer" "B"    #'persp-switch-to-buffer))
-#+end_src
-** Kill buffer
-#+begin_src emacs-lisp :tangle yes
+
 (map! :leader
       (:prefix ("k" . "kill, yes kill")
         :desc "Kill one" "b"            #'kill-buffer
         :desc "Some die, some live" "s" #'kill-some-buffers))
-#+end_src
-** Spell change
-#+begin_src emacs-lisp :tangle yes
+
 (defun spellcheck-change ()
   ;"Run `some-command' and `some-other-command' in sequence."
   (interactive)
@@ -165,9 +119,7 @@ Doom already sets =~/.doom.d/snippets= for personal snippets
       :desc "Change spell language" "s c" #'spellcheck-change)
 (require 'flyspell-correct-ivy)
 (define-key flyspell-mode-map (kbd "C-:") 'flyspell-correct-wrapper)
-#+end_src
-** ivy-global-search
-#+begin_src emacs-lisp :tangle yes
+
 (defun ivy-global-search ()
   ;"ivy project global search"
   (interactive)
@@ -175,10 +127,7 @@ Doom already sets =~/.doom.d/snippets= for personal snippets
   (+ivy/project-search))
 (map! :leader
       :desc "Global search" "s g" #'ivy-global-search)
-#+end_src
 
-* CustomLatex commands
-#+begin_src emacs-lisp :tangle yes
 (defun CustomLatex ()
   "run a command on the current file and revert the buffer"
   (interactive)
@@ -191,9 +140,7 @@ Doom already sets =~/.doom.d/snippets= for personal snippets
       :localleader
       (:prefix ("l" . "links")
         "p" #'org-latex-preview))
-#+end_src
-* Markdown custom commands
-#+begin_src emacs-lisp :tangle yes
+
 (setq! markdown-command "pandoc -f markdown -t html --mathjax --highlight-style=pygments")
 
 (map! :map evil-markdown-mode-map
@@ -203,39 +150,24 @@ Doom already sets =~/.doom.d/snippets= for personal snippets
         :localleader
         (:prefix ("i" . "insert")
           "h"          #'markdown-insert-header-atx-1))
-#+end_src
-* Custom faces
-** Org title
-#+begin_src emacs-lisp :tangle yes
+
 (custom-set-faces
  '(org-document-title ((t (:foreground "#C57BDB" :weight bold :height 2.1 :family "Nimbus Roman"))))
  )
-#+end_src
-** Custom italics
-#+begin_src emacs-lisp :tangle yes
+
 (custom-set-faces
  '(italic ((t (:slant italic :weight bold :family "Script12 BT"))))
  )
-#+end_src
-** Org level
-#+begin_src emacs-lisp :tangle yes
+
 (custom-set-faces
   '(org-level-1 ((t (:inherit outline-1 :height 1.5))))
   '(org-level-2 ((t (:inherit outline-2 :height 1.25))))
   '(org-level-3 ((t (:inherit outline-3 :height 1.12))))
 )
-#+end_src
-** Org apps
-Make Zathura default pdf viewer.
-#+begin_src emacs-lisp :tangle yes
+
 (setq! org-file-apps
        '((auto-mode . emacs)
          (directory . emacs)
          ("\\.pdf\\'" . "zathura %s")))
-#+end_src
-** Org crypt
-GPG key to use for encryption
-Either the Key ID or set to nil to use symmetric encryption.
-#+begin_src emacs-lisp :tangle yes
+
 (setq! org-crypt-key "arciga.duran@gmail.com")
-#+end_src

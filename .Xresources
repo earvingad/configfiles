@@ -1,10 +1,9 @@
 #include "/home/earving/.cache/wal/colors.Xresources"
-/* st.cursorColor: #c6c5c8 */
-/* st.background: #fafafa */
 ! fonts
 ! run "fc-list" for a list of available fonts
 URxvt*font: xft: SauceCodePro Nerd Font Mono:pixelsize=14
 ! URxvt.letterSpace: 0 
+st.font: Iosevka Term SS05:pixelsize=16 
 
 URxvt*termName: rxvt-unicode-256color
 URxvt.cursorBlink: 1

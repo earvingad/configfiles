@@ -83,7 +83,7 @@ keys = [
     Key([], "XF86AudioPrev",lazy.spawn("playerctl previous")),
     Key([], "XF86TouchpadToggle",lazy.spawn("sh /home/earving/.scripts/toggletouchpad.sh")),
     Key([], "Print",lazy.spawn("scrot 'screenshot-%Y-%m-%d.png' && notify-send 'screen shot taken' -i checkbox-symbolic")),
-    Key([mod], "Print",lazy.spawn("ffcast -s trim png ~/Descargas/screenshot-%s.png")),
+    Key([mod], "Print",lazy.spawn("ffcast -s trim png ~/screenshot-%s.png")),
     # && notify-send 'screen shot taken' -i checkbox-symbolic"
     # backlight controls
     Key([], "XF86MonBrightnessUp", lazy.spawn("sh /home/earving/.scripts/brilllocontrol.sh -u")),
@@ -172,12 +172,12 @@ screens = [
                         background = colors[0]
                         ),
                 widget.GroupBox(font="Ubuntu Bold",
-                        fontsize = 9,
-                        margin_y = 0,
+                        fontsize = 10,
+                        margin_y = 3,
                         margin_x = 0,
                         padding_y = 5,
                         padding_x = 5,
-                        borderwidth = 1,
+                        borderwidth = 0,
                         active = colors[7],
                         inactive = colors[8],
                         rounded = False,
@@ -189,7 +189,12 @@ screens = [
                         foreground = colors[7],
                         background = colors[0]
                     ),
-                widget.Prompt(), 
+                widget.Prompt(
+                        font="Ubuntu Bold",
+                        padding=10,
+                        foreground = colors[7],
+                        background = colors[1]
+                    ), 
                 widget.WindowName(font='Ubuntu Bold',
                      fontsize=10,
                      foreground=colors[7]),
@@ -213,8 +218,9 @@ screens = [
                     display_metadata=['xesam:title', 'xesam:artist'],
                     scroll_chars=None,
                     stop_pause_text='',
+                    font='System Font',
                     background = colors[8],
-                    foreground = colors[0],
+                    foreground = colors[7],
                         ),
                 widget.Sep(
                         linewidth = 0,
@@ -243,11 +249,12 @@ screens = [
                         fontsize=37,
                         ),
                 widget.Net(
+                        format='{down} ↓↑ {up}',
                         interface = "wlp1s0",
                         font='Ubunto Mono',
                         foreground = colors[0],
                         background = colors[4],
-                        padding = 5
+                        padding = 5,
                         ),
                 widget.TextBox(
                         text='',

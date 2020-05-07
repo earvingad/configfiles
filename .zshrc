@@ -112,8 +112,9 @@ bindkey -e
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/earving/.zshrc'
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/home/earving/.local/bin"
 #:/bin:usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
+
 
 #completion
 autoload -Uz compinit
@@ -150,9 +151,8 @@ alias pantalla='sh ~/.scripts/toggleHDMI.sh -h'
 alias archstream='acestreamengine --client-console --port 8621'
 alias urserver=' ~/urserver/urserver'
 alias aceplayer='acestream-launcher' 
-alias neofetch='neofetch --ascii "Escritorio/issue"' 
 alias confqtile='nvim ~/.config/qtile/config.py'
-
+alias doom='~/.emacs.d/bin/doom'
 # Correction of commands
 export SPROMPT="Correct $fg_bold[red]%R$reset_color to $fg_bold[green]%r$reset_color? [Y]es, [N]o, [A]bort, [E]dit "
 

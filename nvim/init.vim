@@ -173,6 +173,8 @@ nnoremap <Leader>sc :noh<CR>
 nnoremap <Leader>fr :History<CR>
 " Open file
 nnoremap <Leader>. :Files<CR>
+" Ripgrep search
+nnoremap <Leader>sg :Rg<CR>
 " Save file
 nnoremap <Leader>fs :w<CR>
 " Exit file file
@@ -251,20 +253,20 @@ autocmd FileType tex inoremap <a-CR> \\<CR>
 let $FZF_DEFAULT_COMMAND = 'find .'
 autocmd! FileType fzf set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Title'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Directory'],
-  \ 'fg+':     ['fg', 'Normal', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'Search', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'ModeMsg'],
-  \ 'info':    ['fg', 'Operator'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+" let g:fzf_colors =
+" \ { 'fg':      ['fg', 'Title'],
+"   \ 'bg':      ['bg', 'Normal'],
+"   \ 'hl':      ['fg', 'Directory'],
+"   \ 'fg+':     ['fg', 'Normal', 'CursorColumn', 'Normal'],
+"   \ 'bg+':     ['bg', 'Search', 'CursorColumn'],
+"   \ 'hl+':     ['fg', 'ModeMsg'],
+"   \ 'info':    ['fg', 'Operator'],
+"   \ 'border':  ['fg', 'Ignore'],
+"   \ 'prompt':  ['fg', 'Conditional'],
+"   \ 'pointer': ['fg', 'Exception'],
+"   \ 'marker':  ['fg', 'Keyword'],
+"   \ 'spinner': ['fg', 'Label'],
+"   \ 'header':  ['fg', 'Comment'] }
 
 let g:mkdp_port = '3000'
 " let g:mkdp_browserfunc = 'qutebrowser'
