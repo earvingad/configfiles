@@ -153,6 +153,7 @@ alias urserver=' ~/urserver/urserver'
 alias aceplayer='acestream-launcher' 
 alias confqtile='nvim ~/.config/qtile/config.py'
 alias doom='~/.emacs.d/bin/doom'
+alias orgzly='./.scripts/orgzlydropbox.sh'
 # Correction of commands
 export SPROMPT="Correct $fg_bold[red]%R$reset_color to $fg_bold[green]%r$reset_color? [Y]es, [N]o, [A]bort, [E]dit "
 

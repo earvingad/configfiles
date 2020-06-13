@@ -45,7 +45,8 @@ Plugin 'junegunn/fzf.vim'                                       " fzf
 Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " Deoplete
 Plugin 'SirVer/ultisnips'                                       " Ultisnips
 Plugin 'KeitaNakamura/tex-conceal.vim'                          " Conceal
-Plugin 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+Plugin 'iamcco/markdown-preview.nvim'
+" , { 'do': { -> mkdp#util#install() } }
 
 call vundle#end()       " required, all plugins must appear before this line.
 

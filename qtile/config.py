@@ -72,7 +72,7 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown()),
     Key([mod], "r", lazy.spawncmd()),
     Key([mod], "space", lazy.spawn("rofi -show drun -theme simple")),
-    Key([mod, "shift"], "space", lazy.spawn("rofi -show run -theme  simple.rasi -lines 7 -font 'Source\ Code\ Pro 9'")),
+    Key([mod, "shift"], "space", lazy.spawn("rofi -show run -theme  simple.rasi -lines 7")),
     Key([mod, "shift"], "s", lazy.spawn("rofi -show drun -theme drun-full")),
     # Change the volume if our keyboard has keys
     Key([], "XF86AudioRaiseVolume",lazy.spawn("sh /home/earving/.scripts/volcontrolpulse.sh -u")),
@@ -82,8 +82,8 @@ keys = [
     Key([], "XF86AudioNext",lazy.spawn("playerctl next")),
     Key([], "XF86AudioPrev",lazy.spawn("playerctl previous")),
     Key([], "XF86TouchpadToggle",lazy.spawn("sh /home/earving/.scripts/toggletouchpad.sh")),
-    Key([], "Print",lazy.spawn("scrot 'screenshot-%Y-%m-%d.png' && notify-send 'screen shot taken' -i checkbox-symbolic")),
-    Key([mod], "Print",lazy.spawn("ffcast -s trim png ~/screenshot-%s.png")),
+    Key([], "Print",lazy.spawn("sh /home/earving/.scripts/screenshot.sh -u")),
+    Key([mod], "Print",lazy.spawn("sh /home/earving/.scripts/screenshot.sh -d")),
     # && notify-send 'screen shot taken' -i checkbox-symbolic"
     # backlight controls
     Key([], "XF86MonBrightnessUp", lazy.spawn("sh /home/earving/.scripts/brilllocontrol.sh -u")),
@@ -139,7 +139,7 @@ layouts = [
     layout.MonadTall(border_focus ='#4c8ec3',
                      border_normal='#100a15',
                      border_width = 2,
-                     margin = 5
+                     margin = 1
                     ),
     layout.Max(),
     # layout.Stack(num_stacks=2),
@@ -148,11 +148,11 @@ layouts = [
                      border_width = 2,
                      margin = 5
                     ),
-    layout.Bsp(border_focus ='#4c8ec3',
-                     border_normal='#100a15',
-                     border_width = 2,
-                     margin = 5
-                    )
+    # layout.Bsp(border_focus ='#4c8ec3',
+    #                  border_normal='#100a15',
+    #                  border_width = 2,
+    #                  margin = 5
+    #                 )
 ]
 widget_defaults = dict(
     font='SauceCodePro Nerd Font',

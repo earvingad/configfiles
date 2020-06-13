@@ -1,18 +1,19 @@
-(server-start)
 (setq user-full-name "Earving Arciga"
       user-mail-address "arciga.duran@gmail.com")
 
-(setq doom-theme 'doom-vibrant)
-(setq doom-font (font-spec :family "Iosevka Term SS05" :size 16))
+(setq doom-theme 'doom-solarized-dark)
+(setq doom-font (font-spec :family "Mononoki" :size 16)
+      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 14))
 ;; (setq evil-move-cursor-back nil)
 (setq fancy-splash-image "~/Imágenes/Inkscape Works/cacochan.svg")
 
-(setq org-directory "~/Documentos/org/")
+(setq org-directory "~/Documentos/Dropbox/org")
 (setq default-directory "~/")
 (setq org-roam-directory"~/Documentos/roam")
+(setq org-roam-buffer-width 0.25)
 (setq org-roam-graph-viewer "qutebrowser")
 
-(global-visual-line-mode 1)
+(global-visual-line-mode t)
 (setq display-line-numbers-type 'relative)
 
 (load! "lisp/align.el")
@@ -66,31 +67,19 @@ Version 2017-03-12"
                           ;;  0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "≠")))
                           ))
 
-(global-visual-line-mode 1)
-
-;; (setq yas-snippet-dirs
-;;       '("~/.doom.d/snippets"                 ;; personal snippets
-;;         ))
-(require 'yasnippet)
-(yas-global-mode 1)
-(setq yas-wrap-around-region 1)
-
-(defun my-yas-try-expanding-auto-snippets ()
-  (when yas-minor-mode
+(defun yas-try-expanding-auto-snippets ()
+  "Expand snippets with the `auto' condition.
+This is intended to be added to `post-command-hook'."
+  (when (bound-and-true-p yas-minor-mode)
     (let ((yas-buffer-local-condition ''(require-snippet-condition . auto)))
       (yas-expand))))
-(add-hook 'post-command-hook #'my-yas-try-expanding-auto-snippets)
 
-(load! "lisp/darkroom.el")
+(load! "lisp/olivetti.el")
 (map! :leader
       (:prefix-map ("t" . "toggle")
-        :desc "Zen mode" "z" #'darkroom-mode
-        :desc "menu bar" "m" #'menu-bar-mode))
-
-(map! :leader
-      :desc "Jump to char" "j j"             #'evil-avy-goto-char)
-(map! :leader
-      :desc "Jump to char-2" "j k"           #'evil-avy-goto-char-2)
+        :desc "Zen mode" "z" #'olivetti-mode
+        :desc "Modeline" "m" #'doom-modeline-mode
+        :desc "menu bar" "M" #'menu-bar-mode))
 
 (map! :leader
       "SPC" nil
@@ -120,13 +109,13 @@ Version 2017-03-12"
 (require 'flyspell-correct-ivy)
 (define-key flyspell-mode-map (kbd "C-:") 'flyspell-correct-wrapper)
 
-(defun ivy-global-search ()
+(defun global-search ()
   ;"ivy project global search"
   (interactive)
   (cd "~/")
-  (+ivy/project-search))
+  (counsel-ag))
 (map! :leader
-      :desc "Global search" "s g" #'ivy-global-search)
+      :desc "Global search" "s g" #'global-search)
 
 (defun CustomLatex ()
   "run a command on the current file and revert the buffer"
@@ -151,19 +140,18 @@ Version 2017-03-12"
         (:prefix ("i" . "insert")
           "h"          #'markdown-insert-header-atx-1))
 
-(custom-set-faces
- '(org-document-title ((t (:foreground "#C57BDB" :weight bold :height 2.1 :family "Nimbus Roman"))))
- )
+;; (custom-set-faces!
+  ;; '(italic ((t (:slant italic :weight bold :family "Script12 BT"))))
+  ;; '(italic :slant italic :weight normal :family "Script12 BT")
+  ;; '(org-document-title :weight bold :height 2.1 :family "Nimbus Roman" )
+  ;; '(font-lock-comment-face :slant normal :weight normal :family "Script12 BT" )
+ ;; )
 
-(custom-set-faces
- '(italic ((t (:slant italic :weight bold :family "Script12 BT"))))
- )
-
-(custom-set-faces
-  '(org-level-1 ((t (:inherit outline-1 :height 1.5))))
-  '(org-level-2 ((t (:inherit outline-2 :height 1.25))))
-  '(org-level-3 ((t (:inherit outline-3 :height 1.12))))
-)
+;; (custom-set-faces
+;;   '(org-level-1 ((t (:inherit outline-1 :height 1.5))))
+;;   '(org-level-2 ((t (:inherit outline-2 :height 1.25))))
+;;   '(org-level-3 ((t (:inherit outline-3 :height 1.12))))
+;; )
 
 (setq! org-file-apps
        '((auto-mode . emacs)

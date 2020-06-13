@@ -1,24 +1,3 @@
 #+TITLE: org roam windows
 
-Most of the instructions were taken from [[https://org-roam.readthedocs.io/en/master/installation/][Org-roam official site]]
- 1. Download an [[https://sqlite.org/download.html][Official binary]] for =sqlite3= (the one that includes the =command-line shell program= aka the =.exe=)
-    1) Extract it and add it to your =path=.
-    2) You can check [[https://github.com/earvingad/configfiles/blob/master/emacs/DoomEmacsWindows.org][Doom Emacs Windows]] to see how to add it to your =path=.
- 2. In Emacs, install the =emacsql-sqlite3= package
- 3. Using your text editor, etc. modify =org-roam-db.el= (located in =~/.emacs.d/.local/straight/repos/emacsql-sqlite3/=):
-    1) Replace =(require 'emacsql-sqlite)= with =(require 'emacsql-sqlite3)=
-    2) Comment/deactivate the complete =(defconst org-roam-db--sqlite-available-p ... )=
- 4. In =(defun org-roam-db ...=, replace =emacsql-sqlite= with =emacsql-sqlite3=
- 5. If you compile =.el= files, ensure to replace =org-roam-db.elc= with the new source you modified.
-    1) In other words run =~/.emacs.d/bin/doom sync=
- 6. Back in Emacs, install and configure org-roam
-    1) Open =~/.doom.d/init.el= and replace =org= with =(org +roam)=
-    2) And define you org-roam-directory in your =config.el=
-       =(setq org-roam-directory "/path/of/your/roam/directory")=
- 7. To get graphics, download [[https://graphviz.gitlab.io/_pages/Download/Download_windows.html][Graphviz]] and extract it where you prefer.
-    1) Add this to your =config.el=:
-       =(setq org-roam-graph-executable "/path/to/dot.exe")=
-    2) You might want to add your proffered viewer:
-       =(setq org-roam-graph-viewer "/path/to/image-viewer")=
- 8. Run =~/.emacs.d/bin/doom sync=
- 9. /et voilà!/.
+Please refer to: [[https://earvingad.github.io/posts/org_roam_windows/][org roam windows]]

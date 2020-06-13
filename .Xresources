@@ -3,7 +3,8 @@
 ! run "fc-list" for a list of available fonts
 URxvt*font: xft: SauceCodePro Nerd Font Mono:pixelsize=14
 ! URxvt.letterSpace: 0 
-st.font: Iosevka Term SS05:pixelsize=16 
+st.font: Mononoki:pixelsize=16
+/* st.font: Fantasque Sans Mono:pixelsize=17 */
 
 URxvt*termName: rxvt-unicode-256color
 URxvt.cursorBlink: 1
