@@ -1,7 +1,8 @@
 #!/bin/bash
 
 confirm() {
-    echo -e "Yes\nNo" | rofi -dmenu -i -theme colors-rofi-dark -lines 7 -font "Source\ Code\ Pro 12" -format d -selected-row 0 -p "${1:-Confirm}"
+    # echo -e "Yes\nNo" | rofi -dmenu -i -theme colors-rofi-dark -lines 7 -font "Source\ Code\ Pro 12" -format d -selected-row 0 -p "${1:-Confirm}"
+    echo -e "Yes\nNo" | rofi -dmenu -i -theme simple -lines 7 -format d -selected-row 0 -p "${1:-Confirm}"
 }
 
 shutdown="Shutdown"
@@ -15,7 +16,8 @@ suspend="Suspend"
 
 content="$shutdown\n$reboot\n$quit\n$suspend\n$reload\n$restartpan\n$quitpan"
 
-selection=$(echo -e $content | rofi -dmenu -i -theme colors-rofi-dark -lines 7 -font "Source\ Code\ Pro 12" -markup-rows -p "Action")
+# selection=$(echo -e $content | rofi -dmenu -i -theme colors-rofi-dark -lines 7 -font "Source\ Code\ Pro 12" -markup-rows -p "Action")
+selection=$(echo -e $content | rofi -dmenu -i -theme simple -lines 7 -markup-rows -p "Action")
 case $selection in
     $reload)
         pkill -USR1 -x sxhkd ;;
