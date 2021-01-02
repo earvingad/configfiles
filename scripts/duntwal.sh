@@ -12,12 +12,12 @@
         -lb "${color0}" \
         -nb "${color0}" \
         -cb "${color3}" \
-        -lfr "${color5}" \
-        -nfr "${color5}" \
+        -lfr "${color6}" \
+        -nfr "${color6}" \
         -cfr "${color0}" \
-        -lf "${color5}" \
-        -nf "${color5}" \
-        -cf "${color5}" &
+        -lf "${color6}" \
+        -nf "${color6}" \
+        -cf "${color6}" &
 }
 
 reload_dunst
