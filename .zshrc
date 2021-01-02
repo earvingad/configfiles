@@ -112,8 +112,7 @@ bindkey -e
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/earving/.zshrc'
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/home/earving/.local/bin"
-#:/bin:usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/home/earving/.local/bin:/bin:usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
 
 
 #completion

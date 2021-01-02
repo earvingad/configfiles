@@ -154,6 +154,18 @@ layouts = [
     #                  margin = 5
     #                 )
 ]
+### Functions ###
+def get_kb_layout():
+    output = subprocess.run(
+        ["sh", "/home/earving/.scripts/bar/keyboardlayout.sh"],
+        capture_output=True,
+        encoding="utf-8"
+    ).stdout
+    return output
+
+def open_calendar(qtile):
+    qtile.cmd_spawn('gsimplecal')
+
 widget_defaults = dict(
     font='SauceCodePro Nerd Font',
     fontsize=12,
@@ -198,55 +210,59 @@ screens = [
                 widget.WindowName(font='Ubuntu Bold',
                      fontsize=10,
                      foreground=colors[7]),
-                widget.TextBox(
-                        text='',
-                        background = colors[0],
-                        foreground = colors[8],
-                        padding=-5,
-                        fontsize=37,
-                        ),
+                # widget.TextBox(
+                #         text='',
+                #         background = colors[0],
+                #         foreground = colors[8],
+                #         padding=-5,
+                #         fontsize=37,
+                #         ),
                 widget.TextBox(
                         text="♫",
-                        padding = 2,
+                        padding = 4,
                         foreground=colors[0],
                         background=colors[8],
                         fontsize=14
                         ),
                 widget.Mpris2(
-                    name='spotify',
-                    objname="org.mpris.MediaPlayer2.spotify",
-                    display_metadata=['xesam:title', 'xesam:artist'],
-                    scroll_chars=None,
-                    stop_pause_text='',
-                    font='System Font',
-                    background = colors[8],
-                    foreground = colors[7],
+                        name='spotify',
+                        objname="org.mpris.MediaPlayer2.spotify",
+                        display_metadata=['xesam:title', 'xesam:artist'],
+                        scroll_chars=None,
+                        stop_pause_text='',
+                        font='System Font',
+                        padding = 2,
+                        background = colors[8],
+                        foreground = colors[7],
+                        ),
+                widget.Mpris2(
+                        name='clementine',
+                        objname="org.mpris.MediaPlayer2.clementine",
+                        display_metadata=['xesam:title', 'xesam:artist'],
+                        stop_pause_text='',
+                        font='System Font',
+                        padding = 2,
+                        background = colors[8],
+                        foreground = colors[7]
                         ),
                 widget.Sep(
                         linewidth = 0,
-                        padding = 2,
-                        foreground = colors[8],
-                        background = colors[8]
-                        ),
-                widget.TextBox(
-                        text='',
-                        background = colors[8],
+                        padding = 6,
                         foreground = colors[7],
-                        padding=-5,
-                        fontsize=37,
+                        background = colors[0]
                         ),
                 widget.Battery(format='{char}{percent:2.0%}',
                         font='Ubunto Mono',
                         charge_char="↯",
                         discharge_char="",
+                        padding = 3,
                         foreground=colors[0],
                         background=colors[7]),
-                widget.TextBox(
-                        text='',
-                        background = colors[7],
-                        foreground = colors[4],
-                        padding=-5,
-                        fontsize=37,
+                widget.Sep(
+                        linewidth = 0,
+                        padding = 6,
+                        foreground = colors[7],
+                        background = colors[0]
                         ),
                 widget.Net(
                         format='{down} ↓↑ {up}',
@@ -256,13 +272,12 @@ screens = [
                         background = colors[4],
                         padding = 5,
                         ),
-                widget.TextBox(
-                        text='',
-                        background = colors[4],
-                        foreground = colors[5],
-                        padding=-5,
-                        fontsize=37
-                        ),               
+                widget.Sep(
+                        linewidth = 0,
+                        padding = 6,
+                        foreground = colors[7],
+                        background = colors[0]
+                        ),
                 # widget.TextBox(
                 #         text="☵",
                 #         padding = 5,
@@ -283,12 +298,31 @@ screens = [
                         font='Ubuntu Mono',
                         padding = 5
                         ),
+                widget.Sep(
+                        linewidth = 0,
+                        padding = 6,
+                        foreground = colors[7],
+                        background = colors[0]
+                        ),
                 widget.TextBox(
-                        text='',
-                        background = colors[5],
-                        foreground = colors[6],
-                        padding=-5,
-                        fontsize=37
+                        text="⌨",
+                        padding = 2,
+                        foreground=colors[0],
+                        background=colors[11],
+                        fontsize=12
+                        ),
+                widget.GenPollText(
+                        foreground=colors[0],
+                        background=colors[11],
+                        padding = 5,
+                        func = get_kb_layout,
+                        update_interval=1
+                        ),
+                widget.Sep(
+                        linewidth = 0,
+                        padding = 6,
+                        foreground = colors[7],
+                        background = colors[0]
                         ),
                 widget.TextBox(
                         text='',
@@ -302,31 +336,24 @@ screens = [
                         background = colors[6],
                         padding = 5
                         ),
-                widget.TextBox(
-                        text='',
-                        background = colors[6],
-                        foreground = colors[13],
-                        padding=-5,
-                        fontsize=37
-                        ),       
+                widget.Sep(
+                        linewidth = 0,
+                        padding = 6,
+                        foreground = colors[7],
+                        background = colors[0]
+                        ),
                 widget.TextBox(
                         text=" ",
                         foreground=colors[0],
                         background=colors[13],
-                        padding = 0,
+                        padding = 6,
                         fontsize=12
                         ),
                 widget.Clock(format='%a, %d | %H:%M',
                         font='Ubunto Mono',
                         foreground=colors[0],
-                        background=colors[13]
-                        ),
-                widget.TextBox(
-                        text='',
-                        background = colors[13],
-                        foreground = colors[0],
-                        padding=-5,
-                        fontsize=37,
+                        background=colors[13],
+                        mouse_callbacks={'Button1': open_calendar}
                         ),
                 widget.Systray(
                         foreground=colors[7],
