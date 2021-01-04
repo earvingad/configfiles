@@ -75,7 +75,7 @@ Version 2017-03-12"
 #+begin_src emacs-lisp :tangle yes
 (setq! org-ellipsis " ▾")
 ;;↴ ▼
-(setq! org-superstar-headline-bullets-list '("●" "◉" "◎" "☉" "○" "◌"))
+;; (setq! org-superstar-headline-bullets-list '("●" "◉" "◎" "☉" "○" "◌"))
 ;;"◉" "◎" "○" "∙" "►" "◇"))
 (font-lock-add-keywords 'org-mode
                         '(("^ +\\([+*]\\) "
@@ -133,19 +133,21 @@ This is intended to be added to `post-command-hook'."
 #+end_src
 ** Spell change
 #+begin_src emacs-lisp :tangle yes
+(setq! ispell-dictionary "es")
 (defun spellcheck-change ()
-  ;"Run `some-command' and `some-other-command' in sequence."
-  (interactive)
-  (let* ((dic ispell-current-dictionary)
-    	 (change (if (string= dic "es") "en_US" "es")))
-        (ispell-change-dictionary change)
-        (flyspell-buffer)
-        (message "Dictionary switched from %s to %s" dic change)
-        ))
+ ;"Run `some-command' and `some-other-command' in sequence."
+ (interactive)
+ (let* ((dic ispell-current-dictionary)
+   	 (change (if (string= dic "es") "en_US" "es")))
+       (ispell-change-dictionary change)
+       (flyspell-buffer)
+       (message "Dictionary switched from %s to %s" dic change)
+       ))
 (map! :leader
-      :desc "Change spell language" "s c" #'spellcheck-change)
-(require 'flyspell-correct-ivy)
-(define-key flyspell-mode-map (kbd "C-:") 'flyspell-correct-wrapper)
+     :desc "Change spell language" "s c" #'spellcheck-change)
+;; (require 'flyspell-correct-ivy)
+;; (define-key flyspell-mode-map (kbd "C-:") 'flyspell-correct-wrapper)
+(map! "C-:" #'flyspell-correct-wrapper)
 #+end_src
 ** global-search
 #+begin_src emacs-lisp :tangle yes
