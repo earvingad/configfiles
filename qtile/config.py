@@ -33,7 +33,7 @@ from libqtile import layout, bar, widget, hook
 
 from typing import List  # noqa: F401
 
-@hook.subscribe.startup
+@hook.subscribe.startup_once
 def autostart():
     home = os.path.expanduser('~/.config/qtile/autostart.sh')
     subprocess.call([home])
@@ -61,7 +61,7 @@ keys = [
     # Unsplit = 1 window displayed, like Max layout, but still with
     # multiple stack panes
     Key([mod, "shift"], "Return", lazy.layout.toggle_split()),
-    Key([mod], "Return", lazy.spawn("st")),
+    Key([mod], "Return", lazy.spawn("alacritty")),
 
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout()),
@@ -81,6 +81,9 @@ keys = [
     Key([], "XF86AudioPlay",lazy.spawn("playerctl play-pause")),
     Key([], "XF86AudioNext",lazy.spawn("playerctl next")),
     Key([], "XF86AudioPrev",lazy.spawn("playerctl previous")),
+    Key([mod], "c",lazy.spawn("cmus-remote -u")),
+    Key([mod], "b",lazy.spawn("cmus-remote --next")),
+    Key([mod], "z",lazy.spawn("cmus-remote --prev")),
     Key([], "XF86TouchpadToggle",lazy.spawn("sh /home/earving/.scripts/toggletouchpad.sh")),
     Key([], "Print",lazy.spawn("sh /home/earving/.scripts/screenshot.sh -u")),
     Key([mod], "Print",lazy.spawn("sh /home/earving/.scripts/screenshot.sh -d")),
@@ -95,8 +98,8 @@ groups = [
     Group("2",label="CHAT"),
     Group("3",matches=[Match(wm_class=["Spotify"])],label="MUS"),
     Group("4",matches=[Match(wm_class=["Popcorn-Time"])],label="VID"),
-    Group("5",label="DEV"),
-    Group("6",label="DOC"),
+    # Group("5",label="DEV"),
+    # Group("6",label="DOC"),
     ]
 
 for i in groups:
@@ -143,11 +146,11 @@ layouts = [
                     ),
     layout.Max(),
     # layout.Stack(num_stacks=2),
-    layout.Floating(border_focus ='#4c8ec3',
-                     border_normal='#100a15',
-                     border_width = 2,
-                     margin = 5
-                    ),
+    # layout.Floating(border_focus ='#4c8ec3',
+    #                  border_normal='#100a15',
+    #                  border_width = 2,
+    #                  margin = 5
+    #                 ),
     # layout.Bsp(border_focus ='#4c8ec3',
     #                  border_normal='#100a15',
     #                  border_width = 2,
@@ -167,8 +170,8 @@ def open_calendar(qtile):
     qtile.cmd_spawn('gsimplecal')
 
 widget_defaults = dict(
-    font='SauceCodePro Nerd Font',
-    fontsize=12,
+    font='SF Pro Display Regular',
+    fontsize=13,
     padding=2,
     background=colors[0]
 )
@@ -183,8 +186,9 @@ screens = [
                         foreground = colors[7],
                         background = colors[0]
                         ),
-                widget.GroupBox(font="Ubuntu Bold",
-                        fontsize = 10,
+                widget.GroupBox(
+                        font="SF Pro Display Heavy",
+                        fontsize = 12,
                         margin_y = 3,
                         margin_x = 0,
                         padding_y = 5,
@@ -202,14 +206,16 @@ screens = [
                         background = colors[0]
                     ),
                 widget.Prompt(
-                        font="Ubuntu Bold",
+                        font="SF Pro Display Heavy",
                         padding=10,
                         foreground = colors[7],
                         background = colors[1]
-                    ), 
-                widget.WindowName(font='Ubuntu Bold',
-                     fontsize=10,
-                     foreground=colors[7]),
+                        ), 
+                widget.WindowName(
+                    font="SF Pro Display Heavy",
+                    fontsize=11,
+                    foreground=colors[7]
+                    ),
                 # widget.TextBox(
                 #         text='',
                 #         background = colors[0],
@@ -217,12 +223,21 @@ screens = [
                 #         padding=-5,
                 #         fontsize=37,
                 #         ),
-                widget.TextBox(
-                        text="♫",
-                        padding = 4,
-                        foreground=colors[0],
-                        background=colors[8],
-                        fontsize=14
+                # widget.TextBox(
+                #         text="♫",
+                #         padding = 4,
+                #         foreground=colors[0],
+                #         background=colors[8],
+                #         fontsize=14
+                #         ),
+                widget.Cmus(
+                        font="SF Pro Display Regular",
+                        background = colors[8],
+                        foreground = colors[7],
+                        play_color = colors[7],
+                        noplay_color = colors[0],
+                        update_interval = 1,
+                        padding = 2,
                         ),
                 widget.Mpris2(
                         name='spotify',
@@ -230,7 +245,7 @@ screens = [
                         display_metadata=['xesam:title', 'xesam:artist'],
                         scroll_chars=None,
                         stop_pause_text='',
-                        font='System Font',
+                        # font='System Font',
                         padding = 2,
                         background = colors[8],
                         foreground = colors[7],
@@ -240,7 +255,7 @@ screens = [
                         objname="org.mpris.MediaPlayer2.clementine",
                         display_metadata=['xesam:title', 'xesam:artist'],
                         stop_pause_text='',
-                        font='System Font',
+                        # font='System Font',
                         padding = 2,
                         background = colors[8],
                         foreground = colors[7]
@@ -252,7 +267,7 @@ screens = [
                         background = colors[0]
                         ),
                 widget.Battery(format='{char}{percent:2.0%}',
-                        font='Ubunto Mono',
+                        # font='Ubunto Mono',
                         charge_char="↯",
                         discharge_char="",
                         padding = 3,
@@ -264,10 +279,26 @@ screens = [
                         foreground = colors[7],
                         background = colors[0]
                         ),
+                widget.Wlan(
+                        format='{essid}',
+                        #interface = "wlp1s0",
+                        interface = "wlan0",
+                        # font='Ubunto Mono',
+                        foreground = colors[0],
+                        background = colors[14],
+                        padding = 5,
+                        ),
+                widget.Sep(
+                        linewidth = 0,
+                        padding = 6,
+                        foreground = colors[7],
+                        background = colors[0]
+                        ),
                 widget.Net(
                         format='{down} ↓↑ {up}',
-                        interface = "wlp1s0",
-                        font='Ubunto Mono',
+                        #interface = "wlp1s0",
+                        interface = "wlan0",
+                        # font='Ubunto Mono',
                         foreground = colors[0],
                         background = colors[4],
                         padding = 5,
@@ -278,13 +309,6 @@ screens = [
                         foreground = colors[7],
                         background = colors[0]
                         ),
-                # widget.TextBox(
-                #         text="☵",
-                #         padding = 5,
-                #         foreground=colors[0],
-                #         background=colors[5],
-                #         fontsize=12
-                #         ),
                widget.CurrentLayoutIcon(
                         custom_icon_paths=[os.path.expanduser("~/.config/qtile/icons")],
                         foreground = colors[0],
@@ -295,7 +319,7 @@ screens = [
                 widget.CurrentLayout(
                         foreground = colors[0],
                         background = colors[5],
-                        font='Ubuntu Mono',
+                        # font='Ubuntu Mono',
                         padding = 5
                         ),
                 widget.Sep(
@@ -350,7 +374,7 @@ screens = [
                         fontsize=12
                         ),
                 widget.Clock(format='%a, %d | %H:%M',
-                        font='Ubunto Mono',
+                        # font='Ubunto Mono',
                         foreground=colors[0],
                         background=colors[13],
                         mouse_callbacks={'Button1': open_calendar}

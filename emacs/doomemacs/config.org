@@ -2,14 +2,13 @@
 * General
 ** About me
 #+begin_src emacs-lisp :tangle yes
-(setq user-full-name "Earving Arciga"
-      user-mail-address "arciga.duran@gmail.com")
+(setq user-full-name "Earving")
 #+end_src
 ** Theme
 #+begin_src emacs-lisp :tangle yes
-(setq doom-theme 'doom-solarized-dark)
-(setq doom-font (font-spec :family "Mononoki" :size 16)
-      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 14))
+(setq doom-theme 'doom-nord)
+(setq doom-font (font-spec :family "Mononoki" :size 16))
+      ;; doom-variable-pitch-font (font-spec :family "Fira Sans" :size 14))
 ;; (setq evil-move-cursor-back nil)
 (setq fancy-splash-image "~/Imágenes/Inkscape Works/cacochan.svg")
 #+end_src
@@ -19,7 +18,7 @@
 (setq default-directory "~/")
 (setq org-roam-directory"~/Documentos/roam")
 (setq org-roam-buffer-width 0.25)
-(setq org-roam-graph-viewer "qutebrowser")
+(setq org-roam-graph-viewer "firefox")
 #+end_src
 ** Visual line
 #+begin_src emacs-lisp :tangle yes
@@ -100,7 +99,7 @@ This is intended to be added to `post-command-hook'."
       (yas-expand))))
 #+end_src
 
-** Darkroom
+** Olivetti
 #+begin_src emacs-lisp :tangle yes
 (load! "lisp/olivetti.el")
 (map! :leader
@@ -188,15 +187,6 @@ This is intended to be added to `post-command-hook'."
           "h"          #'markdown-insert-header-atx-1))
 #+end_src
 * Custom faces
-** Custom faces
-#+begin_src emacs-lisp :tangle yes
-;; (custom-set-faces!
-  ;; '(italic ((t (:slant italic :weight bold :family "Script12 BT"))))
-  ;; '(italic :slant italic :weight normal :family "Script12 BT")
-  ;; '(org-document-title :weight bold :height 2.1 :family "Nimbus Roman" )
-  ;; '(font-lock-comment-face :slant normal :weight normal :family "Script12 BT" )
- ;; )
-#+end_src
 ** Org level
 #+begin_src emacs-lisp :tangle yes
 ;; (custom-set-faces
@@ -217,5 +207,5 @@ Make Zathura default pdf viewer.
 GPG key to use for encryption
 Either the Key ID or set to nil to use symmetric encryption.
 #+begin_src emacs-lisp :tangle yes
-(setq! org-crypt-key "arciga.duran@gmail.com")
+;; (setq! org-crypt-key "")
 #+end_src
