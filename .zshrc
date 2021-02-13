@@ -159,6 +159,7 @@ alias musync='rsync -av --delete Música/music/ helium:/home/media/music'
 alias iwconnect='iwctl station wlan0 connect'
 alias iwscan='iwctl station wlan0 scan'
 alias iwgetnet='iwctl station wlan0 get-networks'
+alias electrum='.local/electrum-4.0.9-x86_64.AppImage'
 # Correction of commands
 export SPROMPT="Correct $fg_bold[red]%R$reset_color to $fg_bold[green]%r$reset_color? [Y]es, [N]o, [A]bort, [E]dit "
 
